@@ -60,6 +60,15 @@ void Server::del_user(int sock)
     if(it !=user_list.end())
         user_list.erase(it);
 }
+const char* Server::get_name(int sock)
+{
+    for(const auto&user:user_list)
+    {
+        if(user.sock == sock)
+            return user.user_id;
+    }
+    return nullptr;
+}
 /*
     用户消息处理
     功能:
@@ -80,8 +89,19 @@ void Server::messageHandler(int sock,struct sockaddr_in addr_cli)
         int res = msg_trans.RecvMessage(m);
         if(res == 0)
         {
-            log(LogLevel::INFO,"对端已经下线");
-            del_user(sock);
+            {
+                unique_lock<mutex>lock(mutex_user_list);
+                const char *name = get_name(sock);
+                log(LogLevel::INFO,
+                    "[%s:%d]:%s已经下线",
+                    inet_ntoa(addr_cli.sin_addr),ntohs(addr_cli.sin_port),name);
+                //向所有在线用户广播用户退出消息
+                m.set_type(msg_type::LOGOUT);
+                m.set_name(name);
+                m.set_content("logout");
+                broadcast(m);
+                del_user(sock);
+            }
             break;
         }else if(res == -1)
         {
@@ -186,7 +206,9 @@ void Server::run(const char*ip,int port)
             continue;
         }else
             log(LogLevel::INFO,"accept success");
-
+        log(LogLevel::INFO,
+            "[%s:%d]连接成功",
+            inet_ntoa(addr_cli.sin_addr),ntohs(addr_cli.sin_port));
         //将通信任务分发给线程池
         thread_pool.addTask([this,sock_con,addr_cli]{
             messageHandler(sock_con,addr_cli);

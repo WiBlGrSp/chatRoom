@@ -34,7 +34,7 @@ private:
     vector<userInfo> user_list; //用户列表:用于存储所有登录的用户信息
     int add_user(struct sockaddr_in&addr_user,int sock,char user_id[]);//成功返回0,失败返回-1
     void del_user(int sock);
-
+    const char* get_name(int sock);
     //广播用户消息,exclude_sock表示被排除的用户,-1表示向所有在线用户广播消息
     void broadcast(msg &m,int exclude_sock=-1);   
 /*
