@@ -16,6 +16,8 @@ CMakeFiles/chatRoomClient.dir/src/client.cpp.o: \
  /usr/include/bits/wchar.h /usr/include/bits/stdint-intn.h \
  /usr/include/bits/stdint-uintn.h \
  /home/twz/dev/chatRoom/chatRoomClient/src/../include/log.h \
+ /usr/include/c++/8/cstdarg \
+ /usr/lib/gcc/x86_64-redhat-linux/8/include/stdarg.h \
  /home/twz/dev/chatRoom/chatRoomClient/src/../include/protocol.h \
  /usr/include/sys/socket.h /usr/include/bits/types/struct_iovec.h \
  /usr/lib/gcc/x86_64-redhat-linux/8/include/stddef.h \
@@ -37,8 +39,8 @@ CMakeFiles/chatRoomClient.dir/src/client.cpp.o: \
  /usr/include/asm/bitsperlong.h /usr/include/asm-generic/bitsperlong.h \
  /usr/include/asm/sockios.h /usr/include/asm-generic/sockios.h \
  /usr/include/bits/types/struct_osockaddr.h /usr/include/c++/8/cstdio \
- /usr/include/stdio.h /usr/lib/gcc/x86_64-redhat-linux/8/include/stdarg.h \
- /usr/include/bits/types/__fpos_t.h /usr/include/bits/types/__mbstate_t.h \
+ /usr/include/stdio.h /usr/include/bits/types/__fpos_t.h \
+ /usr/include/bits/types/__mbstate_t.h \
  /usr/include/bits/types/__fpos64_t.h /usr/include/bits/types/__FILE.h \
  /usr/include/bits/types/FILE.h /usr/include/bits/types/struct_FILE.h \
  /usr/include/bits/types/cookie_io_functions_t.h \

@@ -102,9 +102,7 @@ void Server::messageHandler(int sock,struct sockaddr_in addr_cli)
                         add_user(addr_cli,sock);
 
                         //检查用户列表
-                        char log_msg[128];
-                        sprintf(log_msg,"user_list size:%zu\n",user_list.size());
-                        log(LogLevel::INFO,log_msg);
+                        log(LogLevel::INFO,"user_list size:%zu\n",user_list.size());
 
                         //向所有在线用户广播登录成功消息
                         strcpy(m.content,"login success");

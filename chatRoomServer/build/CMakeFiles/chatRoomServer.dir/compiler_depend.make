@@ -4,16 +4,20 @@
 CMakeFiles/chatRoomServer.dir/src/log.cpp.o: /home/twz/dev/chatRoom/chatRoomServer/src/log.cpp \
   /usr/include/stdc-predef.h \
   /home/twz/dev/chatRoom/chatRoomServer/include/log.h \
-  /usr/include/stdio.h \
-  /usr/include/bits/libc-header-start.h \
+  /usr/include/c++/8/cstdarg \
+  /usr/include/c++/8/x86_64-redhat-linux/bits/c++config.h \
+  /usr/include/c++/8/x86_64-redhat-linux/bits/os_defines.h \
   /usr/include/features.h \
   /usr/include/sys/cdefs.h \
   /usr/include/bits/wordsize.h \
   /usr/include/bits/long-double.h \
   /usr/include/gnu/stubs.h \
   /usr/include/gnu/stubs-64.h \
-  /usr/lib/gcc/x86_64-redhat-linux/8/include/stddef.h \
+  /usr/include/c++/8/x86_64-redhat-linux/bits/cpu_defines.h \
   /usr/lib/gcc/x86_64-redhat-linux/8/include/stdarg.h \
+  /usr/include/stdio.h \
+  /usr/include/bits/libc-header-start.h \
+  /usr/lib/gcc/x86_64-redhat-linux/8/include/stddef.h \
   /usr/include/bits/types.h \
   /usr/include/bits/typesizes.h \
   /usr/include/bits/types/__fpos_t.h \
@@ -547,6 +551,7 @@ CMakeFiles/chatRoomServer.dir/src/server.cpp.o: /home/twz/dev/chatRoom/chatRoomS
   /usr/include/bits/getopt_core.h \
   /home/twz/dev/chatRoom/chatRoomServer/include/protocol.h \
   /home/twz/dev/chatRoom/chatRoomServer/include/log.h \
+  /usr/include/c++/8/cstdarg \
   /usr/include/c++/8/cmath \
   /usr/include/math.h \
   /usr/include/bits/math-vector.h \
@@ -824,6 +829,8 @@ CMakeFiles/chatRoomServer.dir/src/threadPool.cpp.o: /home/twz/dev/chatRoom/chatR
 
 /usr/include/asm-generic/errno-base.h:
 
+/usr/include/asm-generic/errno.h:
+
 /usr/include/netinet/in.h:
 
 /usr/include/bits/types/error_t.h:
@@ -890,29 +897,19 @@ CMakeFiles/chatRoomServer.dir/src/threadPool.cpp.o: /home/twz/dev/chatRoom/chatR
 
 /usr/include/bits/errno.h:
 
-/usr/include/stdlib.h:
-
 /usr/include/c++/8/bits/predefined_ops.h:
 
 /usr/lib/gcc/x86_64-redhat-linux/8/include/stdarg.h:
 
-/usr/include/bits/sockaddr.h:
+/usr/include/stdlib.h:
 
-/usr/include/c++/8/ext/new_allocator.h:
+/usr/include/c++/8/bits/nested_exception.h:
 
-/usr/lib/gcc/x86_64-redhat-linux/8/include/stddef.h:
+/usr/include/c++/8/initializer_list:
 
-/usr/include/asm/socket.h:
+/usr/include/c++/8/x86_64-redhat-linux/bits/cpu_defines.h:
 
-/usr/include/c++/8/bits/stl_iterator_base_funcs.h:
-
-/usr/include/sys/cdefs.h:
-
-/usr/include/c++/8/exception:
-
-/usr/include/c++/8/backward/binders.h:
-
-/usr/include/c++/8/bits/cxxabi_forced.h:
+/usr/include/bits/stdio_lim.h:
 
 /usr/include/asm-generic/bitsperlong.h:
 
@@ -968,33 +965,21 @@ CMakeFiles/chatRoomServer.dir/src/threadPool.cpp.o: /home/twz/dev/chatRoom/chatR
 
 /usr/include/bits/types/struct_FILE.h:
 
-/usr/include/c++/8/type_traits:
+/usr/include/c++/8/x86_64-redhat-linux/bits/c++config.h:
 
-/usr/include/bits/types/__mbstate_t.h:
+/usr/include/c++/8/bits/stl_tempbuf.h:
 
-/usr/include/bits/types/struct_timeval.h:
+/usr/include/sys/cdefs.h:
 
-/usr/include/asm/posix_types.h:
+/usr/include/asm/socket.h:
 
-/usr/include/c++/8/bits/std_function.h:
+/usr/include/c++/8/bits/stl_iterator_base_funcs.h:
 
-/home/twz/dev/chatRoom/chatRoomServer/src/log.cpp:
+/usr/include/c++/8/exception:
 
-/usr/include/bits/types.h:
-
-/home/twz/dev/chatRoom/chatRoomServer/include/log.h:
+/usr/include/c++/8/backward/binders.h:
 
 /usr/include/endian.h:
-
-/usr/include/c++/8/bits/functional_hash.h:
-
-/usr/include/c++/8/ext/type_traits.h:
-
-/usr/include/c++/8/clocale:
-
-/usr/include/bits/libc-header-start.h:
-
-/usr/include/bits/long-double.h:
 
 /usr/include/features.h:
 
@@ -1004,13 +989,49 @@ CMakeFiles/chatRoomServer.dir/src/threadPool.cpp.o: /home/twz/dev/chatRoom/chatR
 
 /usr/include/sys/types.h:
 
-/usr/include/c++/8/x86_64-redhat-linux/bits/c++config.h:
+/usr/include/bits/long-double.h:
 
-/usr/include/c++/8/bits/stl_tempbuf.h:
+/usr/include/bits/types.h:
 
-/usr/include/bits/stdio_lim.h:
+/home/twz/dev/chatRoom/chatRoomServer/include/log.h:
 
-/usr/include/c++/8/x86_64-redhat-linux/bits/cpu_defines.h:
+/usr/include/c++/8/bits/functional_hash.h:
+
+/usr/include/c++/8/ext/type_traits.h:
+
+/usr/include/c++/8/clocale:
+
+/usr/include/bits/libc-header-start.h:
+
+/usr/include/gnu/stubs-64.h:
+
+/usr/include/asm-generic/sockios.h:
+
+/usr/include/stdio.h:
+
+/usr/include/bits/sockaddr.h:
+
+/usr/include/c++/8/ext/new_allocator.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/8/include/stddef.h:
+
+/usr/include/c++/8/bits/cxxabi_forced.h:
+
+/usr/include/asm/posix_types.h:
+
+/usr/include/c++/8/bits/std_function.h:
+
+/home/twz/dev/chatRoom/chatRoomServer/src/log.cpp:
+
+/usr/include/c++/8/type_traits:
+
+/usr/include/bits/types/__mbstate_t.h:
+
+/usr/include/bits/types/struct_timeval.h:
+
+/usr/include/bits/types/struct_tm.h:
+
+/usr/include/bits/types/cookie_io_functions_t.h:
 
 /home/twz/dev/chatRoom/chatRoomServer/include/server.h:
 
@@ -1019,20 +1040,6 @@ CMakeFiles/chatRoomServer.dir/src/threadPool.cpp.o: /home/twz/dev/chatRoom/chatR
 /usr/include/c++/8/bits/stl_algobase.h:
 
 /usr/include/c++/8/chrono:
-
-/usr/include/gnu/stubs-64.h:
-
-/usr/include/asm-generic/sockios.h:
-
-/usr/include/stdio.h:
-
-/usr/include/bits/types/cookie_io_functions_t.h:
-
-/usr/include/bits/types/struct_tm.h:
-
-/usr/include/c++/8/bits/nested_exception.h:
-
-/usr/include/c++/8/initializer_list:
 
 /usr/include/strings.h:
 
@@ -1156,6 +1163,8 @@ CMakeFiles/chatRoomServer.dir/src/threadPool.cpp.o: /home/twz/dev/chatRoom/chatR
 
 /usr/include/sched.h:
 
+/usr/include/c++/8/cstdarg:
+
 /usr/include/bits/types/struct_sched_param.h:
 
 /usr/include/bits/thread-shared-types.h:
@@ -1212,12 +1221,10 @@ CMakeFiles/chatRoomServer.dir/src/threadPool.cpp.o: /home/twz/dev/chatRoom/chatR
 
 /usr/include/alloca.h:
 
-/usr/include/c++/8/bits/memoryfwd.h:
-
 /usr/include/c++/8/bits/stl_vector.h:
+
+/usr/include/c++/8/bits/memoryfwd.h:
 
 /usr/include/c++/8/cstdio:
 
 /usr/include/asm/errno.h:
-
-/usr/include/asm-generic/errno.h:

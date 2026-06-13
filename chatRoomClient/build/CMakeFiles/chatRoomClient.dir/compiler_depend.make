@@ -24,6 +24,8 @@ CMakeFiles/chatRoomClient.dir/src/client.cpp.o: /home/twz/dev/chatRoom/chatRoomC
   /usr/include/bits/stdint-intn.h \
   /usr/include/bits/stdint-uintn.h \
   /home/twz/dev/chatRoom/chatRoomClient/include/log.h \
+  /usr/include/c++/8/cstdarg \
+  /usr/lib/gcc/x86_64-redhat-linux/8/include/stdarg.h \
   /home/twz/dev/chatRoom/chatRoomClient/include/protocol.h \
   /usr/include/sys/socket.h \
   /usr/include/bits/types/struct_iovec.h \
@@ -63,7 +65,6 @@ CMakeFiles/chatRoomClient.dir/src/client.cpp.o: /home/twz/dev/chatRoom/chatRoomC
   /usr/include/bits/types/struct_osockaddr.h \
   /usr/include/c++/8/cstdio \
   /usr/include/stdio.h \
-  /usr/lib/gcc/x86_64-redhat-linux/8/include/stdarg.h \
   /usr/include/bits/types/__fpos_t.h \
   /usr/include/bits/types/__mbstate_t.h \
   /usr/include/bits/types/__fpos64_t.h \
@@ -203,16 +204,20 @@ CMakeFiles/chatRoomClient.dir/src/client.cpp.o: /home/twz/dev/chatRoom/chatRoomC
 CMakeFiles/chatRoomClient.dir/src/log.cpp.o: /home/twz/dev/chatRoom/chatRoomClient/src/log.cpp \
   /usr/include/stdc-predef.h \
   /home/twz/dev/chatRoom/chatRoomClient/include/log.h \
-  /usr/include/stdio.h \
-  /usr/include/bits/libc-header-start.h \
+  /usr/include/c++/8/cstdarg \
+  /usr/include/c++/8/x86_64-redhat-linux/bits/c++config.h \
+  /usr/include/c++/8/x86_64-redhat-linux/bits/os_defines.h \
   /usr/include/features.h \
   /usr/include/sys/cdefs.h \
   /usr/include/bits/wordsize.h \
   /usr/include/bits/long-double.h \
   /usr/include/gnu/stubs.h \
   /usr/include/gnu/stubs-64.h \
-  /usr/lib/gcc/x86_64-redhat-linux/8/include/stddef.h \
+  /usr/include/c++/8/x86_64-redhat-linux/bits/cpu_defines.h \
   /usr/lib/gcc/x86_64-redhat-linux/8/include/stdarg.h \
+  /usr/include/stdio.h \
+  /usr/include/bits/libc-header-start.h \
+  /usr/lib/gcc/x86_64-redhat-linux/8/include/stddef.h \
   /usr/include/bits/types.h \
   /usr/include/bits/typesizes.h \
   /usr/include/bits/types/__fpos_t.h \
@@ -367,13 +372,7 @@ CMakeFiles/chatRoomClient.dir/src/protocol.cpp.o: /home/twz/dev/chatRoom/chatRoo
 
 /usr/include/c++/8/bits/cxxabi_forced.h:
 
-/usr/include/bits/types/struct_iovec.h:
-
-/usr/include/bits/libc-header-start.h:
-
-/usr/include/bits/types/struct_sched_param.h:
-
-/usr/include/bits/wchar.h:
+/usr/include/c++/8/bits/ostream_insert.h:
 
 /usr/include/bits/pthreadtypes.h:
 
@@ -384,8 +383,6 @@ CMakeFiles/chatRoomClient.dir/src/protocol.cpp.o: /home/twz/dev/chatRoom/chatRoo
 /usr/include/bits/types/FILE.h:
 
 /usr/include/bits/types/__fpos_t.h:
-
-/usr/lib/gcc/x86_64-redhat-linux/8/include/stdarg.h:
 
 /usr/include/bits/types/locale_t.h:
 
@@ -441,10 +438,6 @@ CMakeFiles/chatRoomClient.dir/src/protocol.cpp.o: /home/twz/dev/chatRoom/chatRoo
 
 /usr/include/sys/select.h:
 
-/usr/include/bits/in.h:
-
-/usr/include/bits/types/timer_t.h:
-
 /usr/include/arpa/inet.h:
 
 /usr/include/c++/8/bits/allocator.h:
@@ -497,6 +490,8 @@ CMakeFiles/chatRoomClient.dir/src/protocol.cpp.o: /home/twz/dev/chatRoom/chatRoo
 
 /usr/include/c++/8/bits/stringfwd.h:
 
+/usr/lib/gcc/x86_64-redhat-linux/8/include/stdarg.h:
+
 /usr/include/c++/8/x86_64-redhat-linux/bits/os_defines.h:
 
 /usr/include/c++/8/bits/range_access.h:
@@ -529,6 +524,8 @@ CMakeFiles/chatRoomClient.dir/src/protocol.cpp.o: /home/twz/dev/chatRoom/chatRoo
 
 /usr/include/c++/8/bits/move.h:
 
+/usr/include/bits/wchar.h:
+
 /usr/include/c++/8/cstdio:
 
 /usr/include/c++/8/bits/memoryfwd.h:
@@ -537,11 +534,29 @@ CMakeFiles/chatRoomClient.dir/src/protocol.cpp.o: /home/twz/dev/chatRoom/chatRoo
 
 /home/twz/dev/chatRoom/chatRoomClient/include/log.h:
 
+/usr/include/bits/types/struct_sched_param.h:
+
+/usr/include/c++/8/cstdarg:
+
 /usr/include/bits/types/clockid_t.h:
+
+/usr/include/bits/types/struct_iovec.h:
+
+/usr/include/bits/libc-header-start.h:
+
+/usr/include/bits/types/timer_t.h:
+
+/usr/include/bits/in.h:
 
 /usr/include/c++/8/cstring:
 
 /usr/include/bits/types/clock_t.h:
+
+/usr/include/bits/uintn-identity.h:
+
+/usr/include/c++/8/stdexcept:
+
+/usr/include/bits/types/time_t.h:
 
 /usr/include/c++/8/bits/concept_check.h:
 
@@ -562,14 +577,6 @@ CMakeFiles/chatRoomClient.dir/src/protocol.cpp.o: /home/twz/dev/chatRoom/chatRoo
 /usr/include/c++/8/utility:
 
 /usr/include/bits/types/struct_itimerspec.h:
-
-/usr/include/bits/types/time_t.h:
-
-/usr/include/bits/uintn-identity.h:
-
-/usr/include/c++/8/stdexcept:
-
-/usr/include/c++/8/bits/ostream_insert.h:
 
 /usr/include/bits/waitflags.h:
 
