@@ -1,0 +1,32 @@
+[
+{
+  "directory": "/home/twz/dev/chatRoom/chatRoomClient/build",
+  "command": "/usr/bin/c++  -I/home/twz/dev/chatRoom/chatRoomClient/include -I/home/twz/dev/chatRoom/chatRoomClient/../tools/include -std=gnu++11 -fsanitize=address -g -o CMakeFiles/chatRoomServer.dir/home/twz/dev/chatRoom/tools/src/log.cpp.o -c /home/twz/dev/chatRoom/tools/src/log.cpp",
+  "file": "/home/twz/dev/chatRoom/tools/src/log.cpp",
+  "output": "CMakeFiles/chatRoomServer.dir/home/twz/dev/chatRoom/tools/src/log.cpp.o"
+},
+{
+  "directory": "/home/twz/dev/chatRoom/chatRoomClient/build",
+  "command": "/usr/bin/c++  -I/home/twz/dev/chatRoom/chatRoomClient/include -I/home/twz/dev/chatRoom/chatRoomClient/../tools/include -std=gnu++11 -fsanitize=address -g -o CMakeFiles/chatRoomServer.dir/home/twz/dev/chatRoom/tools/src/messageTransporter.cpp.o -c /home/twz/dev/chatRoom/tools/src/messageTransporter.cpp",
+  "file": "/home/twz/dev/chatRoom/tools/src/messageTransporter.cpp",
+  "output": "CMakeFiles/chatRoomServer.dir/home/twz/dev/chatRoom/tools/src/messageTransporter.cpp.o"
+},
+{
+  "directory": "/home/twz/dev/chatRoom/chatRoomClient/build",
+  "command": "/usr/bin/c++  -I/home/twz/dev/chatRoom/chatRoomClient/include -I/home/twz/dev/chatRoom/chatRoomClient/../tools/include -std=gnu++11 -fsanitize=address -g -o CMakeFiles/chatRoomServer.dir/home/twz/dev/chatRoom/tools/src/protocol.cpp.o -c /home/twz/dev/chatRoom/tools/src/protocol.cpp",
+  "file": "/home/twz/dev/chatRoom/tools/src/protocol.cpp",
+  "output": "CMakeFiles/chatRoomServer.dir/home/twz/dev/chatRoom/tools/src/protocol.cpp.o"
+},
+{
+  "directory": "/home/twz/dev/chatRoom/chatRoomClient/build",
+  "command": "/usr/bin/c++  -I/home/twz/dev/chatRoom/chatRoomClient/include -I/home/twz/dev/chatRoom/chatRoomClient/../tools/include -std=gnu++11 -fsanitize=address -g -o CMakeFiles/chatRoomServer.dir/src/client.cpp.o -c /home/twz/dev/chatRoom/chatRoomClient/src/client.cpp",
+  "file": "/home/twz/dev/chatRoom/chatRoomClient/src/client.cpp",
+  "output": "CMakeFiles/chatRoomServer.dir/src/client.cpp.o"
+},
+{
+  "directory": "/home/twz/dev/chatRoom/chatRoomClient/build",
+  "command": "/usr/bin/c++  -I/home/twz/dev/chatRoom/chatRoomClient/include -I/home/twz/dev/chatRoom/chatRoomClient/../tools/include -std=gnu++11 -fsanitize=address -g -o CMakeFiles/chatRoomServer.dir/src/main.cpp.o -c /home/twz/dev/chatRoom/chatRoomClient/src/main.cpp",
+  "file": "/home/twz/dev/chatRoom/chatRoomClient/src/main.cpp",
+  "output": "CMakeFiles/chatRoomServer.dir/src/main.cpp.o"
+}
+]

@@ -69,24 +69,52 @@ include CMakeFiles/chatRoomServer.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/chatRoomServer.dir/flags.make
 
-CMakeFiles/chatRoomServer.dir/src/log.cpp.o: CMakeFiles/chatRoomServer.dir/flags.make
-CMakeFiles/chatRoomServer.dir/src/log.cpp.o: /home/twz/dev/chatRoom/chatRoomServer/src/log.cpp
-CMakeFiles/chatRoomServer.dir/src/log.cpp.o: CMakeFiles/chatRoomServer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/twz/dev/chatRoom/chatRoomServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/chatRoomServer.dir/src/log.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/chatRoomServer.dir/src/log.cpp.o -MF CMakeFiles/chatRoomServer.dir/src/log.cpp.o.d -o CMakeFiles/chatRoomServer.dir/src/log.cpp.o -c /home/twz/dev/chatRoom/chatRoomServer/src/log.cpp
+CMakeFiles/chatRoomServer.dir/home/twz/dev/chatRoom/tools/src/log.cpp.o: CMakeFiles/chatRoomServer.dir/flags.make
+CMakeFiles/chatRoomServer.dir/home/twz/dev/chatRoom/tools/src/log.cpp.o: /home/twz/dev/chatRoom/tools/src/log.cpp
+CMakeFiles/chatRoomServer.dir/home/twz/dev/chatRoom/tools/src/log.cpp.o: CMakeFiles/chatRoomServer.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/twz/dev/chatRoom/chatRoomServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/chatRoomServer.dir/home/twz/dev/chatRoom/tools/src/log.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/chatRoomServer.dir/home/twz/dev/chatRoom/tools/src/log.cpp.o -MF CMakeFiles/chatRoomServer.dir/home/twz/dev/chatRoom/tools/src/log.cpp.o.d -o CMakeFiles/chatRoomServer.dir/home/twz/dev/chatRoom/tools/src/log.cpp.o -c /home/twz/dev/chatRoom/tools/src/log.cpp
 
-CMakeFiles/chatRoomServer.dir/src/log.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/chatRoomServer.dir/src/log.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/twz/dev/chatRoom/chatRoomServer/src/log.cpp > CMakeFiles/chatRoomServer.dir/src/log.cpp.i
+CMakeFiles/chatRoomServer.dir/home/twz/dev/chatRoom/tools/src/log.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/chatRoomServer.dir/home/twz/dev/chatRoom/tools/src/log.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/twz/dev/chatRoom/tools/src/log.cpp > CMakeFiles/chatRoomServer.dir/home/twz/dev/chatRoom/tools/src/log.cpp.i
 
-CMakeFiles/chatRoomServer.dir/src/log.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/chatRoomServer.dir/src/log.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/twz/dev/chatRoom/chatRoomServer/src/log.cpp -o CMakeFiles/chatRoomServer.dir/src/log.cpp.s
+CMakeFiles/chatRoomServer.dir/home/twz/dev/chatRoom/tools/src/log.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/chatRoomServer.dir/home/twz/dev/chatRoom/tools/src/log.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/twz/dev/chatRoom/tools/src/log.cpp -o CMakeFiles/chatRoomServer.dir/home/twz/dev/chatRoom/tools/src/log.cpp.s
+
+CMakeFiles/chatRoomServer.dir/home/twz/dev/chatRoom/tools/src/messageTransporter.cpp.o: CMakeFiles/chatRoomServer.dir/flags.make
+CMakeFiles/chatRoomServer.dir/home/twz/dev/chatRoom/tools/src/messageTransporter.cpp.o: /home/twz/dev/chatRoom/tools/src/messageTransporter.cpp
+CMakeFiles/chatRoomServer.dir/home/twz/dev/chatRoom/tools/src/messageTransporter.cpp.o: CMakeFiles/chatRoomServer.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/twz/dev/chatRoom/chatRoomServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/chatRoomServer.dir/home/twz/dev/chatRoom/tools/src/messageTransporter.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/chatRoomServer.dir/home/twz/dev/chatRoom/tools/src/messageTransporter.cpp.o -MF CMakeFiles/chatRoomServer.dir/home/twz/dev/chatRoom/tools/src/messageTransporter.cpp.o.d -o CMakeFiles/chatRoomServer.dir/home/twz/dev/chatRoom/tools/src/messageTransporter.cpp.o -c /home/twz/dev/chatRoom/tools/src/messageTransporter.cpp
+
+CMakeFiles/chatRoomServer.dir/home/twz/dev/chatRoom/tools/src/messageTransporter.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/chatRoomServer.dir/home/twz/dev/chatRoom/tools/src/messageTransporter.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/twz/dev/chatRoom/tools/src/messageTransporter.cpp > CMakeFiles/chatRoomServer.dir/home/twz/dev/chatRoom/tools/src/messageTransporter.cpp.i
+
+CMakeFiles/chatRoomServer.dir/home/twz/dev/chatRoom/tools/src/messageTransporter.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/chatRoomServer.dir/home/twz/dev/chatRoom/tools/src/messageTransporter.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/twz/dev/chatRoom/tools/src/messageTransporter.cpp -o CMakeFiles/chatRoomServer.dir/home/twz/dev/chatRoom/tools/src/messageTransporter.cpp.s
+
+CMakeFiles/chatRoomServer.dir/home/twz/dev/chatRoom/tools/src/protocol.cpp.o: CMakeFiles/chatRoomServer.dir/flags.make
+CMakeFiles/chatRoomServer.dir/home/twz/dev/chatRoom/tools/src/protocol.cpp.o: /home/twz/dev/chatRoom/tools/src/protocol.cpp
+CMakeFiles/chatRoomServer.dir/home/twz/dev/chatRoom/tools/src/protocol.cpp.o: CMakeFiles/chatRoomServer.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/twz/dev/chatRoom/chatRoomServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/chatRoomServer.dir/home/twz/dev/chatRoom/tools/src/protocol.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/chatRoomServer.dir/home/twz/dev/chatRoom/tools/src/protocol.cpp.o -MF CMakeFiles/chatRoomServer.dir/home/twz/dev/chatRoom/tools/src/protocol.cpp.o.d -o CMakeFiles/chatRoomServer.dir/home/twz/dev/chatRoom/tools/src/protocol.cpp.o -c /home/twz/dev/chatRoom/tools/src/protocol.cpp
+
+CMakeFiles/chatRoomServer.dir/home/twz/dev/chatRoom/tools/src/protocol.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/chatRoomServer.dir/home/twz/dev/chatRoom/tools/src/protocol.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/twz/dev/chatRoom/tools/src/protocol.cpp > CMakeFiles/chatRoomServer.dir/home/twz/dev/chatRoom/tools/src/protocol.cpp.i
+
+CMakeFiles/chatRoomServer.dir/home/twz/dev/chatRoom/tools/src/protocol.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/chatRoomServer.dir/home/twz/dev/chatRoom/tools/src/protocol.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/twz/dev/chatRoom/tools/src/protocol.cpp -o CMakeFiles/chatRoomServer.dir/home/twz/dev/chatRoom/tools/src/protocol.cpp.s
 
 CMakeFiles/chatRoomServer.dir/src/main.cpp.o: CMakeFiles/chatRoomServer.dir/flags.make
 CMakeFiles/chatRoomServer.dir/src/main.cpp.o: /home/twz/dev/chatRoom/chatRoomServer/src/main.cpp
 CMakeFiles/chatRoomServer.dir/src/main.cpp.o: CMakeFiles/chatRoomServer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/twz/dev/chatRoom/chatRoomServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/chatRoomServer.dir/src/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/twz/dev/chatRoom/chatRoomServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/chatRoomServer.dir/src/main.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/chatRoomServer.dir/src/main.cpp.o -MF CMakeFiles/chatRoomServer.dir/src/main.cpp.o.d -o CMakeFiles/chatRoomServer.dir/src/main.cpp.o -c /home/twz/dev/chatRoom/chatRoomServer/src/main.cpp
 
 CMakeFiles/chatRoomServer.dir/src/main.cpp.i: cmake_force
@@ -97,24 +125,10 @@ CMakeFiles/chatRoomServer.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/chatRoomServer.dir/src/main.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/twz/dev/chatRoom/chatRoomServer/src/main.cpp -o CMakeFiles/chatRoomServer.dir/src/main.cpp.s
 
-CMakeFiles/chatRoomServer.dir/src/protocol.cpp.o: CMakeFiles/chatRoomServer.dir/flags.make
-CMakeFiles/chatRoomServer.dir/src/protocol.cpp.o: /home/twz/dev/chatRoom/chatRoomServer/src/protocol.cpp
-CMakeFiles/chatRoomServer.dir/src/protocol.cpp.o: CMakeFiles/chatRoomServer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/twz/dev/chatRoom/chatRoomServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/chatRoomServer.dir/src/protocol.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/chatRoomServer.dir/src/protocol.cpp.o -MF CMakeFiles/chatRoomServer.dir/src/protocol.cpp.o.d -o CMakeFiles/chatRoomServer.dir/src/protocol.cpp.o -c /home/twz/dev/chatRoom/chatRoomServer/src/protocol.cpp
-
-CMakeFiles/chatRoomServer.dir/src/protocol.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/chatRoomServer.dir/src/protocol.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/twz/dev/chatRoom/chatRoomServer/src/protocol.cpp > CMakeFiles/chatRoomServer.dir/src/protocol.cpp.i
-
-CMakeFiles/chatRoomServer.dir/src/protocol.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/chatRoomServer.dir/src/protocol.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/twz/dev/chatRoom/chatRoomServer/src/protocol.cpp -o CMakeFiles/chatRoomServer.dir/src/protocol.cpp.s
-
 CMakeFiles/chatRoomServer.dir/src/server.cpp.o: CMakeFiles/chatRoomServer.dir/flags.make
 CMakeFiles/chatRoomServer.dir/src/server.cpp.o: /home/twz/dev/chatRoom/chatRoomServer/src/server.cpp
 CMakeFiles/chatRoomServer.dir/src/server.cpp.o: CMakeFiles/chatRoomServer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/twz/dev/chatRoom/chatRoomServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/chatRoomServer.dir/src/server.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/twz/dev/chatRoom/chatRoomServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/chatRoomServer.dir/src/server.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/chatRoomServer.dir/src/server.cpp.o -MF CMakeFiles/chatRoomServer.dir/src/server.cpp.o.d -o CMakeFiles/chatRoomServer.dir/src/server.cpp.o -c /home/twz/dev/chatRoom/chatRoomServer/src/server.cpp
 
 CMakeFiles/chatRoomServer.dir/src/server.cpp.i: cmake_force
@@ -128,7 +142,7 @@ CMakeFiles/chatRoomServer.dir/src/server.cpp.s: cmake_force
 CMakeFiles/chatRoomServer.dir/src/threadPool.cpp.o: CMakeFiles/chatRoomServer.dir/flags.make
 CMakeFiles/chatRoomServer.dir/src/threadPool.cpp.o: /home/twz/dev/chatRoom/chatRoomServer/src/threadPool.cpp
 CMakeFiles/chatRoomServer.dir/src/threadPool.cpp.o: CMakeFiles/chatRoomServer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/twz/dev/chatRoom/chatRoomServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/chatRoomServer.dir/src/threadPool.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/twz/dev/chatRoom/chatRoomServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/chatRoomServer.dir/src/threadPool.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/chatRoomServer.dir/src/threadPool.cpp.o -MF CMakeFiles/chatRoomServer.dir/src/threadPool.cpp.o.d -o CMakeFiles/chatRoomServer.dir/src/threadPool.cpp.o -c /home/twz/dev/chatRoom/chatRoomServer/src/threadPool.cpp
 
 CMakeFiles/chatRoomServer.dir/src/threadPool.cpp.i: cmake_force
@@ -141,23 +155,25 @@ CMakeFiles/chatRoomServer.dir/src/threadPool.cpp.s: cmake_force
 
 # Object files for target chatRoomServer
 chatRoomServer_OBJECTS = \
-"CMakeFiles/chatRoomServer.dir/src/log.cpp.o" \
+"CMakeFiles/chatRoomServer.dir/home/twz/dev/chatRoom/tools/src/log.cpp.o" \
+"CMakeFiles/chatRoomServer.dir/home/twz/dev/chatRoom/tools/src/messageTransporter.cpp.o" \
+"CMakeFiles/chatRoomServer.dir/home/twz/dev/chatRoom/tools/src/protocol.cpp.o" \
 "CMakeFiles/chatRoomServer.dir/src/main.cpp.o" \
-"CMakeFiles/chatRoomServer.dir/src/protocol.cpp.o" \
 "CMakeFiles/chatRoomServer.dir/src/server.cpp.o" \
 "CMakeFiles/chatRoomServer.dir/src/threadPool.cpp.o"
 
 # External object files for target chatRoomServer
 chatRoomServer_EXTERNAL_OBJECTS =
 
-chatRoomServer: CMakeFiles/chatRoomServer.dir/src/log.cpp.o
+chatRoomServer: CMakeFiles/chatRoomServer.dir/home/twz/dev/chatRoom/tools/src/log.cpp.o
+chatRoomServer: CMakeFiles/chatRoomServer.dir/home/twz/dev/chatRoom/tools/src/messageTransporter.cpp.o
+chatRoomServer: CMakeFiles/chatRoomServer.dir/home/twz/dev/chatRoom/tools/src/protocol.cpp.o
 chatRoomServer: CMakeFiles/chatRoomServer.dir/src/main.cpp.o
-chatRoomServer: CMakeFiles/chatRoomServer.dir/src/protocol.cpp.o
 chatRoomServer: CMakeFiles/chatRoomServer.dir/src/server.cpp.o
 chatRoomServer: CMakeFiles/chatRoomServer.dir/src/threadPool.cpp.o
 chatRoomServer: CMakeFiles/chatRoomServer.dir/build.make
 chatRoomServer: CMakeFiles/chatRoomServer.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/twz/dev/chatRoom/chatRoomServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable chatRoomServer"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/twz/dev/chatRoom/chatRoomServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable chatRoomServer"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/chatRoomServer.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

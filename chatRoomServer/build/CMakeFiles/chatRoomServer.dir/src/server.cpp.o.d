@@ -1,8 +1,8 @@
 CMakeFiles/chatRoomServer.dir/src/server.cpp.o: \
  /home/twz/dev/chatRoom/chatRoomServer/src/server.cpp \
  /usr/include/stdc-predef.h \
- /home/twz/dev/chatRoom/chatRoomServer/src/../include/server.h \
- /home/twz/dev/chatRoom/chatRoomServer/src/../include/../include/threadPool.h \
+ /home/twz/dev/chatRoom/chatRoomServer/include/server.h \
+ /home/twz/dev/chatRoom/chatRoomServer/include/../include/threadPool.h \
  /usr/include/c++/8/vector /usr/include/c++/8/bits/stl_algobase.h \
  /usr/include/c++/8/x86_64-redhat-linux/bits/c++config.h \
  /usr/include/c++/8/x86_64-redhat-linux/bits/os_defines.h \
@@ -125,7 +125,7 @@ CMakeFiles/chatRoomServer.dir/src/server.cpp.o: \
  /usr/include/c++/8/x86_64-redhat-linux/bits/error_constants.h \
  /usr/include/c++/8/mutex /usr/include/c++/8/functional \
  /usr/include/c++/8/bits/std_function.h \
- /home/twz/dev/chatRoom/chatRoomServer/src/../include/../include/protocol.h \
+ /home/twz/dev/chatRoom/chatRoomServer/../tools/include/../include/protocol.h \
  /usr/include/c++/8/cstring /usr/include/string.h /usr/include/strings.h \
  /usr/include/sys/socket.h /usr/include/bits/types/struct_iovec.h \
  /usr/include/bits/socket.h /usr/include/bits/socket_type.h \
@@ -140,9 +140,12 @@ CMakeFiles/chatRoomServer.dir/src/server.cpp.o: \
  /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
  /usr/include/bits/confname.h /usr/include/bits/getopt_posix.h \
  /usr/include/bits/getopt_core.h \
- /home/twz/dev/chatRoom/chatRoomServer/src/../include/protocol.h \
- /home/twz/dev/chatRoom/chatRoomServer/src/../include/log.h \
- /usr/include/c++/8/cstdarg /usr/include/c++/8/cmath /usr/include/math.h \
+ /home/twz/dev/chatRoom/chatRoomServer/../tools/include/protocol.h \
+ /home/twz/dev/chatRoom/chatRoomServer/../tools/include/log.h \
+ /usr/include/c++/8/cstdarg \
+ /home/twz/dev/chatRoom/chatRoomServer/../tools/include/messageTransporter.h \
+ /home/twz/dev/chatRoom/chatRoomServer/../tools/include/../include/protocol.h \
+ /usr/include/c++/8/cmath /usr/include/math.h \
  /usr/include/bits/math-vector.h /usr/include/bits/libm-simd-decl-stubs.h \
  /usr/include/bits/flt-eval-method.h /usr/include/bits/fp-logb.h \
  /usr/include/bits/fp-fast.h \

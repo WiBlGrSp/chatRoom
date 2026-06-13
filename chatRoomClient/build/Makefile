@@ -117,24 +117,96 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named chatRoomClient
+# Target rules for targets named chatRoomServer
 
 # Build rule for target.
-chatRoomClient: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 chatRoomClient
-.PHONY : chatRoomClient
+chatRoomServer: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 chatRoomServer
+.PHONY : chatRoomServer
 
 # fast build rule for target.
-chatRoomClient/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/chatRoomClient.dir/build.make CMakeFiles/chatRoomClient.dir/build
-.PHONY : chatRoomClient/fast
+chatRoomServer/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chatRoomServer.dir/build.make CMakeFiles/chatRoomServer.dir/build
+.PHONY : chatRoomServer/fast
+
+home/twz/dev/chatRoom/tools/src/log.o: home/twz/dev/chatRoom/tools/src/log.cpp.o
+.PHONY : home/twz/dev/chatRoom/tools/src/log.o
+
+# target to build an object file
+home/twz/dev/chatRoom/tools/src/log.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chatRoomServer.dir/build.make CMakeFiles/chatRoomServer.dir/home/twz/dev/chatRoom/tools/src/log.cpp.o
+.PHONY : home/twz/dev/chatRoom/tools/src/log.cpp.o
+
+home/twz/dev/chatRoom/tools/src/log.i: home/twz/dev/chatRoom/tools/src/log.cpp.i
+.PHONY : home/twz/dev/chatRoom/tools/src/log.i
+
+# target to preprocess a source file
+home/twz/dev/chatRoom/tools/src/log.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chatRoomServer.dir/build.make CMakeFiles/chatRoomServer.dir/home/twz/dev/chatRoom/tools/src/log.cpp.i
+.PHONY : home/twz/dev/chatRoom/tools/src/log.cpp.i
+
+home/twz/dev/chatRoom/tools/src/log.s: home/twz/dev/chatRoom/tools/src/log.cpp.s
+.PHONY : home/twz/dev/chatRoom/tools/src/log.s
+
+# target to generate assembly for a file
+home/twz/dev/chatRoom/tools/src/log.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chatRoomServer.dir/build.make CMakeFiles/chatRoomServer.dir/home/twz/dev/chatRoom/tools/src/log.cpp.s
+.PHONY : home/twz/dev/chatRoom/tools/src/log.cpp.s
+
+home/twz/dev/chatRoom/tools/src/messageTransporter.o: home/twz/dev/chatRoom/tools/src/messageTransporter.cpp.o
+.PHONY : home/twz/dev/chatRoom/tools/src/messageTransporter.o
+
+# target to build an object file
+home/twz/dev/chatRoom/tools/src/messageTransporter.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chatRoomServer.dir/build.make CMakeFiles/chatRoomServer.dir/home/twz/dev/chatRoom/tools/src/messageTransporter.cpp.o
+.PHONY : home/twz/dev/chatRoom/tools/src/messageTransporter.cpp.o
+
+home/twz/dev/chatRoom/tools/src/messageTransporter.i: home/twz/dev/chatRoom/tools/src/messageTransporter.cpp.i
+.PHONY : home/twz/dev/chatRoom/tools/src/messageTransporter.i
+
+# target to preprocess a source file
+home/twz/dev/chatRoom/tools/src/messageTransporter.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chatRoomServer.dir/build.make CMakeFiles/chatRoomServer.dir/home/twz/dev/chatRoom/tools/src/messageTransporter.cpp.i
+.PHONY : home/twz/dev/chatRoom/tools/src/messageTransporter.cpp.i
+
+home/twz/dev/chatRoom/tools/src/messageTransporter.s: home/twz/dev/chatRoom/tools/src/messageTransporter.cpp.s
+.PHONY : home/twz/dev/chatRoom/tools/src/messageTransporter.s
+
+# target to generate assembly for a file
+home/twz/dev/chatRoom/tools/src/messageTransporter.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chatRoomServer.dir/build.make CMakeFiles/chatRoomServer.dir/home/twz/dev/chatRoom/tools/src/messageTransporter.cpp.s
+.PHONY : home/twz/dev/chatRoom/tools/src/messageTransporter.cpp.s
+
+home/twz/dev/chatRoom/tools/src/protocol.o: home/twz/dev/chatRoom/tools/src/protocol.cpp.o
+.PHONY : home/twz/dev/chatRoom/tools/src/protocol.o
+
+# target to build an object file
+home/twz/dev/chatRoom/tools/src/protocol.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chatRoomServer.dir/build.make CMakeFiles/chatRoomServer.dir/home/twz/dev/chatRoom/tools/src/protocol.cpp.o
+.PHONY : home/twz/dev/chatRoom/tools/src/protocol.cpp.o
+
+home/twz/dev/chatRoom/tools/src/protocol.i: home/twz/dev/chatRoom/tools/src/protocol.cpp.i
+.PHONY : home/twz/dev/chatRoom/tools/src/protocol.i
+
+# target to preprocess a source file
+home/twz/dev/chatRoom/tools/src/protocol.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chatRoomServer.dir/build.make CMakeFiles/chatRoomServer.dir/home/twz/dev/chatRoom/tools/src/protocol.cpp.i
+.PHONY : home/twz/dev/chatRoom/tools/src/protocol.cpp.i
+
+home/twz/dev/chatRoom/tools/src/protocol.s: home/twz/dev/chatRoom/tools/src/protocol.cpp.s
+.PHONY : home/twz/dev/chatRoom/tools/src/protocol.s
+
+# target to generate assembly for a file
+home/twz/dev/chatRoom/tools/src/protocol.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chatRoomServer.dir/build.make CMakeFiles/chatRoomServer.dir/home/twz/dev/chatRoom/tools/src/protocol.cpp.s
+.PHONY : home/twz/dev/chatRoom/tools/src/protocol.cpp.s
 
 src/client.o: src/client.cpp.o
 .PHONY : src/client.o
 
 # target to build an object file
 src/client.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/chatRoomClient.dir/build.make CMakeFiles/chatRoomClient.dir/src/client.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chatRoomServer.dir/build.make CMakeFiles/chatRoomServer.dir/src/client.cpp.o
 .PHONY : src/client.cpp.o
 
 src/client.i: src/client.cpp.i
@@ -142,7 +214,7 @@ src/client.i: src/client.cpp.i
 
 # target to preprocess a source file
 src/client.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/chatRoomClient.dir/build.make CMakeFiles/chatRoomClient.dir/src/client.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chatRoomServer.dir/build.make CMakeFiles/chatRoomServer.dir/src/client.cpp.i
 .PHONY : src/client.cpp.i
 
 src/client.s: src/client.cpp.s
@@ -150,39 +222,15 @@ src/client.s: src/client.cpp.s
 
 # target to generate assembly for a file
 src/client.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/chatRoomClient.dir/build.make CMakeFiles/chatRoomClient.dir/src/client.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chatRoomServer.dir/build.make CMakeFiles/chatRoomServer.dir/src/client.cpp.s
 .PHONY : src/client.cpp.s
-
-src/log.o: src/log.cpp.o
-.PHONY : src/log.o
-
-# target to build an object file
-src/log.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/chatRoomClient.dir/build.make CMakeFiles/chatRoomClient.dir/src/log.cpp.o
-.PHONY : src/log.cpp.o
-
-src/log.i: src/log.cpp.i
-.PHONY : src/log.i
-
-# target to preprocess a source file
-src/log.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/chatRoomClient.dir/build.make CMakeFiles/chatRoomClient.dir/src/log.cpp.i
-.PHONY : src/log.cpp.i
-
-src/log.s: src/log.cpp.s
-.PHONY : src/log.s
-
-# target to generate assembly for a file
-src/log.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/chatRoomClient.dir/build.make CMakeFiles/chatRoomClient.dir/src/log.cpp.s
-.PHONY : src/log.cpp.s
 
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
 # target to build an object file
 src/main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/chatRoomClient.dir/build.make CMakeFiles/chatRoomClient.dir/src/main.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chatRoomServer.dir/build.make CMakeFiles/chatRoomServer.dir/src/main.cpp.o
 .PHONY : src/main.cpp.o
 
 src/main.i: src/main.cpp.i
@@ -190,7 +238,7 @@ src/main.i: src/main.cpp.i
 
 # target to preprocess a source file
 src/main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/chatRoomClient.dir/build.make CMakeFiles/chatRoomClient.dir/src/main.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chatRoomServer.dir/build.make CMakeFiles/chatRoomServer.dir/src/main.cpp.i
 .PHONY : src/main.cpp.i
 
 src/main.s: src/main.cpp.s
@@ -198,32 +246,8 @@ src/main.s: src/main.cpp.s
 
 # target to generate assembly for a file
 src/main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/chatRoomClient.dir/build.make CMakeFiles/chatRoomClient.dir/src/main.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chatRoomServer.dir/build.make CMakeFiles/chatRoomServer.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
-
-src/protocol.o: src/protocol.cpp.o
-.PHONY : src/protocol.o
-
-# target to build an object file
-src/protocol.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/chatRoomClient.dir/build.make CMakeFiles/chatRoomClient.dir/src/protocol.cpp.o
-.PHONY : src/protocol.cpp.o
-
-src/protocol.i: src/protocol.cpp.i
-.PHONY : src/protocol.i
-
-# target to preprocess a source file
-src/protocol.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/chatRoomClient.dir/build.make CMakeFiles/chatRoomClient.dir/src/protocol.cpp.i
-.PHONY : src/protocol.cpp.i
-
-src/protocol.s: src/protocol.cpp.s
-.PHONY : src/protocol.s
-
-# target to generate assembly for a file
-src/protocol.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/chatRoomClient.dir/build.make CMakeFiles/chatRoomClient.dir/src/protocol.cpp.s
-.PHONY : src/protocol.cpp.s
 
 # Help Target
 help:
@@ -233,19 +257,22 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... chatRoomClient"
+	@echo "... chatRoomServer"
+	@echo "... home/twz/dev/chatRoom/tools/src/log.o"
+	@echo "... home/twz/dev/chatRoom/tools/src/log.i"
+	@echo "... home/twz/dev/chatRoom/tools/src/log.s"
+	@echo "... home/twz/dev/chatRoom/tools/src/messageTransporter.o"
+	@echo "... home/twz/dev/chatRoom/tools/src/messageTransporter.i"
+	@echo "... home/twz/dev/chatRoom/tools/src/messageTransporter.s"
+	@echo "... home/twz/dev/chatRoom/tools/src/protocol.o"
+	@echo "... home/twz/dev/chatRoom/tools/src/protocol.i"
+	@echo "... home/twz/dev/chatRoom/tools/src/protocol.s"
 	@echo "... src/client.o"
 	@echo "... src/client.i"
 	@echo "... src/client.s"
-	@echo "... src/log.o"
-	@echo "... src/log.i"
-	@echo "... src/log.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
-	@echo "... src/protocol.o"
-	@echo "... src/protocol.i"
-	@echo "... src/protocol.s"
 .PHONY : help
 
 

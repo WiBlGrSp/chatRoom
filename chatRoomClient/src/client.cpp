@@ -1,6 +1,6 @@
-#include"../include/client.h"
-#include"../include/log.h"
-#include"../include/protocol.h" 
+#include"client.h"
+#include"log.h"
+#include"protocol.h" 
 #include <sys/socket.h>
 #include <cstdio>
 #include <cstring>
@@ -32,8 +32,8 @@ void Client::login()
     
     //组装消息
     msg m;
-    strncpy(m.name,this->name,USER_NAME_LENGTH);
-    m.type = msg_type::LOGIN; 
+    m.set_type(msg_type::LOGIN);
+    m.set_name(this->name);
 
     m.serialize(buf,BUFSIZE);
 
@@ -49,9 +49,8 @@ void Client::logout()
     msg m;
     char buf[BUFSIZE];
 
-    m.type = msg_type::LOGOUT; 
-    strncpy(m.name, this->name,USER_NAME_LENGTH);
-    bzero(m.content,CONTENT_LENGTH);
+    m.set_type(msg_type::LOGOUT);
+    m.set_name(this->name);
 
     m.serialize(buf, BUFSIZE);
     if(send(sock,buf,BUFSIZE,0)==-1)
@@ -92,9 +91,9 @@ void Client::messageHandler()
         {
             msg m;
             m.type = msg_type::CHAT;
-            strncpy(m.name,this->name,USER_NAME_LENGTH);
-            strncpy(m.content,buf,CONTENT_LENGTH);
-            
+            m.set_name(this->name);
+            m.set_content(buf);
+        
             m.serialize(buf,BUFSIZE);
             send(sock,buf,BUFSIZE,0);
         }

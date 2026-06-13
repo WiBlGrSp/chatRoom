@@ -63,7 +63,7 @@ CMAKE_BINARY_DIR = /home/twz/dev/chatRoom/chatRoomClient/build
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/chatRoomClient.dir/all
+all: CMakeFiles/chatRoomServer.dir/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
@@ -71,34 +71,34 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/chatRoomClient.dir/clean
+clean: CMakeFiles/chatRoomServer.dir/clean
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/chatRoomClient.dir
+# Target rules for target CMakeFiles/chatRoomServer.dir
 
 # All Build rule for target.
-CMakeFiles/chatRoomClient.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/chatRoomClient.dir/build.make CMakeFiles/chatRoomClient.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/chatRoomClient.dir/build.make CMakeFiles/chatRoomClient.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/twz/dev/chatRoom/chatRoomClient/build/CMakeFiles --progress-num=1,2,3,4,5 "Built target chatRoomClient"
-.PHONY : CMakeFiles/chatRoomClient.dir/all
+CMakeFiles/chatRoomServer.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chatRoomServer.dir/build.make CMakeFiles/chatRoomServer.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chatRoomServer.dir/build.make CMakeFiles/chatRoomServer.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/twz/dev/chatRoom/chatRoomClient/build/CMakeFiles --progress-num=1,2,3,4,5,6 "Built target chatRoomServer"
+.PHONY : CMakeFiles/chatRoomServer.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/chatRoomClient.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/twz/dev/chatRoom/chatRoomClient/build/CMakeFiles 5
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/chatRoomClient.dir/all
+CMakeFiles/chatRoomServer.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/twz/dev/chatRoom/chatRoomClient/build/CMakeFiles 6
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/chatRoomServer.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/twz/dev/chatRoom/chatRoomClient/build/CMakeFiles 0
-.PHONY : CMakeFiles/chatRoomClient.dir/rule
+.PHONY : CMakeFiles/chatRoomServer.dir/rule
 
 # Convenience name for target.
-chatRoomClient: CMakeFiles/chatRoomClient.dir/rule
-.PHONY : chatRoomClient
+chatRoomServer: CMakeFiles/chatRoomServer.dir/rule
+.PHONY : chatRoomServer
 
 # clean rule for target.
-CMakeFiles/chatRoomClient.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/chatRoomClient.dir/build.make CMakeFiles/chatRoomClient.dir/clean
-.PHONY : CMakeFiles/chatRoomClient.dir/clean
+CMakeFiles/chatRoomServer.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chatRoomServer.dir/build.make CMakeFiles/chatRoomServer.dir/clean
+.PHONY : CMakeFiles/chatRoomServer.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

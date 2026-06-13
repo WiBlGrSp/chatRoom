@@ -1,6 +1,7 @@
-#include"../include/server.h"
-#include"../include/protocol.h"
-#include"../include/log.h"
+#include"server.h"
+#include"protocol.h"
+#include"log.h"
+#include"messageTransporter.h"
 #include <cmath>
 #include <mutex>
 #include <netinet/in.h>
@@ -22,31 +23,35 @@ Server::~Server()
 {
     
 }
-void Server::broadcast(const msg& m,int exclude_sock)
+void Server::broadcast(msg& m,int exclude_sock)
 {
-    // printf("------------broadcast--------------------\n");
-    char buf[BUFSIZE];
-    m.serialize(buf,BUFSIZE);
+    messageTransporter msg_trans;
     for(const auto&user:user_list)
     {
         if(user.sock!=exclude_sock)
         {
-            int res = send(user.sock,buf,BUFSIZE,0);
-            if(res==-1)
-            {
-                log(LogLevel::ERROR,"broadcast error");
-            }
+            msg_trans.set_sock(user.sock);
+            int res = msg_trans.SendMessage(m);
+            if(res==-1) log(LogLevel::ERROR,"broadcast error");
         }
     }
-    // printf("------------broadcast end--------------------\n");
     
 }
-void Server::add_user(struct sockaddr_in&addr_user,int sock)
+int Server::add_user(struct sockaddr_in&addr_user,int sock,char user_id[])
 {
+    //检查是否有重复
+    for(const auto&user:user_list)
+    {
+        if(strcmp(user_id,user.user_id)==0)
+            return -1;
+    }
     struct userInfo user_info;
     user_info.addr = addr_user;
     user_info.sock = sock;
+    strcpy(user_info.user_id,user_id);
+
     user_list.push_back(user_info);
+    return 0;
 }
 void Server::del_user(int sock)
 {
@@ -68,15 +73,11 @@ void Server::del_user(int sock)
 void Server::messageHandler(int sock,struct sockaddr_in addr_cli)
 {
  
-    char buf[BUFSIZE];
+    messageTransporter msg_trans(sock);
+    struct msg m;
     while(true)
     {
-        //接收客户端消息
-        bzero(buf,sizeof(buf));
-        log(LogLevel::INFO,"wait for msg");
-
-        int res = recv(sock,buf,sizeof(buf),0);
-
+        int res = msg_trans.RecvMessage(m);
         if(res == 0)
         {
             log(LogLevel::INFO,"对端已经下线");
@@ -86,26 +87,26 @@ void Server::messageHandler(int sock,struct sockaddr_in addr_cli)
         {
             log(LogLevel::ERROR,"recv error");
         }else{
-            //解析消息
-            struct msg m;
-            m.deserialize(buf);
-
             //分类处理
             switch(m.type)
             {
                 case msg_type::LOGIN:
                     {
                         unique_lock<mutex>lock(mutex_user_list);
-                        
+            
                         //DEBUG:重复添加相同用户
                         //向用户列表添加该用户
-                        add_user(addr_cli,sock);
-
+                        if(add_user(addr_cli,sock,m.name) == -1)
+                        {
+                            m.set_content("login error:id重复");
+                            msg_trans.SendMessage(m);
+                            break;
+                        }
                         //检查用户列表
-                        log(LogLevel::INFO,"user_list size:%zu\n",user_list.size());
+                        log(LogLevel::INFO,"user_list size:%zu",user_list.size());
 
                         //向所有在线用户广播登录成功消息
-                        strcpy(m.content,"login success");
+                        m.set_content("login");
                         broadcast(m);
                     }
                 break;
@@ -122,7 +123,7 @@ void Server::messageHandler(int sock,struct sockaddr_in addr_cli)
                         //从用户列表删除该用户
                         del_user(sock);
                         //向所有在线用户广播用户退出消息
-                        strcpy(m.content,"logout");
+                        m.set_content("logout");
                         broadcast(m);
                     }
                 break;

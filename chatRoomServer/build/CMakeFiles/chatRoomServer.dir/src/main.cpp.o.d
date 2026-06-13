@@ -125,7 +125,7 @@ CMakeFiles/chatRoomServer.dir/src/main.cpp.o: \
  /usr/include/c++/8/x86_64-redhat-linux/bits/error_constants.h \
  /usr/include/c++/8/mutex /usr/include/c++/8/functional \
  /usr/include/c++/8/bits/std_function.h \
- /home/twz/dev/chatRoom/chatRoomServer/src/../include/../include/protocol.h \
+ /home/twz/dev/chatRoom/chatRoomServer/../tools/include/../include/protocol.h \
  /usr/include/c++/8/cstring /usr/include/string.h /usr/include/strings.h \
  /usr/include/sys/socket.h /usr/include/bits/types/struct_iovec.h \
  /usr/include/bits/socket.h /usr/include/bits/socket_type.h \

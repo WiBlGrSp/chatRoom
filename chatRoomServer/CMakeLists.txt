@@ -6,20 +6,26 @@ project(chatRoomServer)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+# 工具库路径
+set(TOOLS_DIR ${PROJECT_SOURCE_DIR}/../tools)
+
 # 搜索源文件
 file(GLOB SRC_LIST
     ${PROJECT_SOURCE_DIR}/src/*.cpp
+    ${TOOLS_DIR}/src/*.cpp
 )
 
 # 生成可执行文件
 add_executable(${PROJECT_NAME}
     ${SRC_LIST}
+
 )
 
 # 头文件目录
 target_include_directories(${PROJECT_NAME}
     PRIVATE
     ${PROJECT_SOURCE_DIR}/include
+    ${TOOLS_DIR}/include
 )
 
 # pthread
