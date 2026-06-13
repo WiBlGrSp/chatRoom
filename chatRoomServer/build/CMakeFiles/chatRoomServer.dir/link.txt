@@ -1,0 +1,1 @@
+/usr/bin/c++ -fsanitize=address CMakeFiles/chatRoomServer.dir/src/log.cpp.o CMakeFiles/chatRoomServer.dir/src/main.cpp.o CMakeFiles/chatRoomServer.dir/src/protocol.cpp.o CMakeFiles/chatRoomServer.dir/src/server.cpp.o CMakeFiles/chatRoomServer.dir/src/threadPool.cpp.o -o chatRoomServer  -lpthread 

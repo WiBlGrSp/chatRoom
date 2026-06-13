@@ -1,0 +1,3 @@
+/home/twz/dev/chatRoom/chatRoomServer/build/CMakeFiles/chatRoomServer.dir
+/home/twz/dev/chatRoom/chatRoomServer/build/CMakeFiles/edit_cache.dir
+/home/twz/dev/chatRoom/chatRoomServer/build/CMakeFiles/rebuild_cache.dir
