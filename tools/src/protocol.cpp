@@ -5,11 +5,22 @@
 #include<arpa/inet.h>
 #include <netinet/in.h>
 #include<cstdio>
-msg::msg():type(msg_type::CHAT)
+msg::msg(msg_type type,char*name,char*content):type(type)
 {
-    memset(name,0,sizeof(name));
-    memset(content,0,sizeof(content));
+    if(name!=nullptr)
+    {
+        strncpy(this->name,name,USER_NAME_LENGTH);
+    }else {
+        memset(this->name,0,sizeof(this->name));
+    }
+    if(content !=nullptr)
+    {
+        strncpy(this->content,content,CONTENT_LENGTH);
+    }else {
+        memset(this->content,0,sizeof(this->content));
+    }
 }
+
 void msg::set_type(msg_type type)
 {
     this->type = type;

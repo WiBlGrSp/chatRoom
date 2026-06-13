@@ -1,5 +1,6 @@
 #include"client.h"
 #include"log.h"
+#include "messageTransporter.h"
 #include"protocol.h" 
 #include <sys/socket.h>
 #include <cstdio>
@@ -23,7 +24,7 @@ void Client::login()
 {
 
     //读取用户名
-    char buf[BUFSIZE];
+    char buf[USER_NAME_LENGTH];
     printf("请输入用户名以登录:");
     fflush(stdout);
     bzero(this->name,sizeof(this->name));
@@ -31,14 +32,7 @@ void Client::login()
     this->name[strlen(name)-1]='\0';
     
     //组装消息
-    msg m;
-    m.set_type(msg_type::LOGIN);
-    m.set_name(this->name);
-
-    m.serialize(buf,BUFSIZE);
-
-
-    if(send(sock,buf,BUFSIZE,0)==-1)
+    if(messageTransporter(sock).SendMessage(msg(msg_type::LOGIN,this->name))==-1)
     {
         log(LogLevel::ERROR,"login error");
     }
@@ -46,14 +40,7 @@ void Client::login()
 }
 void Client::logout()
 {
-    msg m;
-    char buf[BUFSIZE];
-
-    m.set_type(msg_type::LOGOUT);
-    m.set_name(this->name);
-
-    m.serialize(buf, BUFSIZE);
-    if(send(sock,buf,BUFSIZE,0)==-1)
+    if(messageTransporter(sock).SendMessage(msg(msg_type::LOGOUT,this->name))==-1)
     {
         log(LogLevel::ERROR,"logout error");
     }
@@ -64,13 +51,14 @@ void Client::logout()
 //用于发送消息
 void Client::messageHandler()
 {
-    char buf[BUFSIZE];
+    char buf[CONTENT_LENGTH];
+    messageTransporter msg_trans(this->sock);
     //自动登录
     login();
     while(true)
     {
         //读取终端输入
-        fgets(buf,BUFSIZE,stdin);
+        fgets(buf,sizeof(buf),stdin);
         buf[strlen(buf)-1] = '\0';
 
         //根据输入类型,分类处理
@@ -89,13 +77,7 @@ void Client::messageHandler()
             break;
         }else if(status == cliType::LOGIN)
         {
-            msg m;
-            m.type = msg_type::CHAT;
-            m.set_name(this->name);
-            m.set_content(buf);
-        
-            m.serialize(buf,BUFSIZE);
-            send(sock,buf,BUFSIZE,0);
+            msg_trans.SendMessage(msg(msg_type::CHAT,this->name,buf));
         }
 
     }
@@ -150,11 +132,11 @@ void Client::run()
     th.detach();
 
     //接收服务端消息并打印
-    char buf[BUFSIZE];
+    messageTransporter msg_trans(sock);
+    msg m;
     while(true)
     {
-        bzero(buf,BUFSIZE);
-        int res = recv(sock,buf,BUFSIZE,0);
+        int res = msg_trans.RecvMessage(m);
         if(res == -1)
             log(LogLevel::ERROR,"recv error");
         else if(res == 0)
@@ -164,8 +146,6 @@ void Client::run()
         }
         else
         {
-            msg m;
-            m.deserialize(buf);
             m.print();
         }
     }   

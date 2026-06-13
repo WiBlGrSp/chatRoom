@@ -14,7 +14,7 @@ struct msg{
     msg_type type;  //消息类型
     char name[USER_NAME_LENGTH];  //用户名
     char content[CONTENT_LENGTH];  //消息内容
-    msg();
+    msg(msg_type type=msg_type::CHAT,char*name=nullptr,char*content=nullptr);
     void set_type(msg_type type);
     void set_name(const char name[]);
     void set_content(const char content[]);

@@ -18,6 +18,8 @@ CMakeFiles/chatRoomServer.dir/src/client.cpp.o: \
  /home/twz/dev/chatRoom/chatRoomClient/../tools/include/log.h \
  /usr/include/c++/8/cstdarg \
  /usr/lib/gcc/x86_64-redhat-linux/8/include/stdarg.h \
+ /home/twz/dev/chatRoom/chatRoomClient/../tools/include/messageTransporter.h \
+ /home/twz/dev/chatRoom/chatRoomClient/../tools/include/../include/protocol.h \
  /home/twz/dev/chatRoom/chatRoomClient/../tools/include/protocol.h \
  /usr/include/sys/socket.h /usr/include/bits/types/struct_iovec.h \
  /usr/lib/gcc/x86_64-redhat-linux/8/include/stddef.h \

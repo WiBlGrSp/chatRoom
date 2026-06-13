@@ -91,9 +91,8 @@ void Server::messageHandler(int sock,struct sockaddr_in addr_cli)
         {
             {
                 unique_lock<mutex>lock(mutex_user_list);
-                const char *name = get_name(sock);
-                log(LogLevel::INFO,
-                    "[%s:%d]:%s已经下线",
+                const char*name = get_name(sock);
+                log(LogLevel::INFO,"[%s:%d]:%s已经下线",
                     inet_ntoa(addr_cli.sin_addr),ntohs(addr_cli.sin_port),name);
                 //向所有在线用户广播用户退出消息
                 m.set_type(msg_type::LOGOUT);
@@ -206,9 +205,8 @@ void Server::run(const char*ip,int port)
             continue;
         }else
             log(LogLevel::INFO,"accept success");
-        log(LogLevel::INFO,
-            "[%s:%d]连接成功",
-            inet_ntoa(addr_cli.sin_addr),ntohs(addr_cli.sin_port));
+        log(LogLevel::INFO,"[%s:%d]:连接成功",
+        inet_ntoa(addr_cli.sin_addr),ntohs(addr_cli.sin_port));
         //将通信任务分发给线程池
         thread_pool.addTask([this,sock_con,addr_cli]{
             messageHandler(sock_con,addr_cli);

@@ -17,7 +17,7 @@ void messageTransporter::set_sock(int sock)
 {
     m_sock = sock;
 }
-int messageTransporter::SendMessage(msg&message)
+int messageTransporter::SendMessage(const msg&message)
 {
     bzero(wbuf,kBufSize);
     message.serialize(wbuf,kBufSize);

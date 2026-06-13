@@ -1,7 +1,6 @@
 #ifndef _CLIENT_H_
 #define _CLIENT_H_
 #include"../include/protocol.h"
-#define BUFSIZE 1024
 /*网络聊天室,客户端类
 功能:
     主线程:初始化客户端,发起连接请求,接收服务端消息

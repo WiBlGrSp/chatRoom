@@ -13,7 +13,6 @@
 #include<unistd.h>
 #include<mutex>
 #define BACKLOG 128
-#define BUFSIZE 1024
 #define USER_ID_LENGTH 32
 
 using namespace std;
