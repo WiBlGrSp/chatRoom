@@ -1,11 +1,11 @@
-#include "../include/protocol.h"
-#include "../include/log.h"
+#include "common/protocol.h"
+#include "common/log.h"
 #include <cstdint>
 #include <cstring>
 #include <arpa/inet.h>
 #include <netinet/in.h>
 #include <cstdio>
-#include "../include/safe.h"
+#include "common/safe.h"
 
 Message::Message(MsgType type, char* name, char* content) : type_(type)
 {

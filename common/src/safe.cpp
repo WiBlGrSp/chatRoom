@@ -1,4 +1,4 @@
-#include"../include/safe.h"
+#include"common/safe.h"
 #include<iostream>
 namespace Safe {
 int copy(char*dst,std::size_t dst_size,const char*str)

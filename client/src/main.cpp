@@ -1,4 +1,4 @@
-#include"../include/client.h"
+#include"client.h"
 #define CLI_IP "192.168.42.129"
 #define CLI_PORT 9999
 #define SER_IP "192.168.42.129"

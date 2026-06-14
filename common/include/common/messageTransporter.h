@@ -1,6 +1,6 @@
 #ifndef _MESSAGE_TRANSPORTER_H_
 #define _MESSAGE_TRANSPORTER_H_
-#include "../include/protocol.h"
+#include "protocol.h"
 
 class MessageTransporter
 {

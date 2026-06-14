@@ -1,6 +1,6 @@
 #ifndef _CLIENT_H_
 #define _CLIENT_H_
-#include "../include/protocol.h"
+#include "common/protocol.h"
 
 /*网络聊天室,客户端类
 功能:

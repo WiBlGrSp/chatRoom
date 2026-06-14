@@ -2,8 +2,8 @@
 #define _SERVER_H_
 
 //在线多人网络聊天室-服务器端
-#include "../include/threadPool.h"
-#include "../include/protocol.h"
+#include "common/threadPool.h"
+#include "common/protocol.h"
 #include <cstdio>
 #include <cstring>
 #include <sys/types.h>

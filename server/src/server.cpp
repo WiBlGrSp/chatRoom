@@ -1,7 +1,7 @@
 #include "server.h"
-#include "protocol.h"
-#include "log.h"
-#include "messageTransporter.h"
+#include "common/protocol.h"
+#include "common/log.h"
+#include "common/messageTransporter.h"
 #include <cmath>
 #include <mutex>
 #include <netinet/in.h>

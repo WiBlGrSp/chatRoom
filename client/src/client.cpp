@@ -1,7 +1,7 @@
 #include "client.h"
-#include "log.h"
-#include "messageTransporter.h"
-#include "protocol.h" 
+#include "common/log.h"
+#include "common/messageTransporter.h"
+#include "common/protocol.h" 
 #include <sys/socket.h>
 #include <cstdio>
 #include <cstring>
@@ -10,7 +10,7 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <thread>
-#include "safe.h"
+#include "common/safe.h"
 
 Client::Client(const char* ip, int port, const char* server_ip, int server_port)
     : cli_ip_(ip), cli_port_(port), ser_ip_(server_ip), ser_port_(server_port), status_(CliType::DEFAULT)

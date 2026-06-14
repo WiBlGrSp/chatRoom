@@ -1,4 +1,4 @@
-#include"../include/log.h"
+#include"common/log.h"
 #include<stdio.h>
 #include<ctime>
 void log(LogLevel log_level,const char*fmt,...)
