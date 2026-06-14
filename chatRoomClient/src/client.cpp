@@ -10,7 +10,7 @@
 #include<netinet/in.h>
 #include<arpa/inet.h>
 #include<thread>
-
+#include"safe.h"
 Client::Client(const char* ip, int port, const char* server_ip, int server_port)
     : cli_ip(ip), cli_port(port), ser_ip(server_ip), ser_port(server_port),status(cliType::DEFAULT)
 {
@@ -24,14 +24,10 @@ void Client::login()
 {
 
     //读取用户名
-    char buf[USER_NAME_LENGTH];
     printf("请输入用户名以登录:");
     fflush(stdout);
-    bzero(this->name,sizeof(this->name));
-    fgets(this->name,sizeof(this->name),stdin);
-    this->name[strlen(name)-1]='\0';
-    
-    //组装消息
+    Safe::Input(this->name,sizeof(this->name));
+
     if(messageTransporter(sock).SendMessage(msg(msg_type::LOGIN,this->name))==-1)
     {
         log(LogLevel::ERROR,"login error");
@@ -51,16 +47,14 @@ void Client::logout()
 //用于发送消息
 void Client::messageHandler()
 {
-    char buf[CONTENT_LENGTH];
+    char buf[msg::kContentSize];
     messageTransporter msg_trans(this->sock);
     //自动登录
     login();
     while(true)
     {
         //读取终端输入
-        fgets(buf,sizeof(buf),stdin);
-        buf[strlen(buf)-1] = '\0';
-
+        Safe::Input(buf,sizeof(buf));
         //根据输入类型,分类处理
         if(strcasecmp(buf,"login")==0)
         {

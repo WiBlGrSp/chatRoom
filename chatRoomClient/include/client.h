@@ -16,7 +16,7 @@ private:
     const char* ser_ip; //服务器IP地址
     int ser_port;       //服务器端口号
     cliType status;         //客户端状态
-    char name[USER_NAME_LENGTH];
+    char name[msg::kUserNameSize];
 
     void login();
     void logout();
