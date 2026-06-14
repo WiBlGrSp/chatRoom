@@ -1,6 +1,7 @@
 #ifndef _CLIENT_H_
 #define _CLIENT_H_
 #include "common/protocol.h"
+#include <atomic>
 
 /*网络聊天室,客户端类
 功能:
@@ -19,6 +20,8 @@ private:
     int ser_port_;       //服务器端口号
     CliType status_;         //客户端状态
     char name_[Message::kUserNameSize];
+
+    std::atomic<bool> running_;
 
     void login();
     void logout();

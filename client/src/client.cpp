@@ -10,10 +10,11 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <thread>
+#include <unistd.h>
 #include "common/safe.h"
 
 Client::Client(const char* ip, int port, const char* server_ip, int server_port)
-    : cli_ip_(ip), cli_port_(port), ser_ip_(server_ip), ser_port_(server_port), status_(CliType::DEFAULT)
+    : cli_ip_(ip), cli_port_(port), ser_ip_(server_ip), ser_port_(server_port), status_(CliType::DEFAULT),running_(true)
 {
     run();
 }
@@ -70,7 +71,8 @@ void Client::messageHandler()
         {
             if (status_ == CliType::LOGIN)
                 logout();
-            break;
+            running_ = false;
+            shutdown(sock_,SHUT_RDWR);  //关闭套接字的收发功能
         } else if (status_ == CliType::LOGIN)
         {
             msg_trans.sendMessage(Message(MsgType::CHAT, this->name_, buf));
@@ -116,7 +118,7 @@ void Client::run()
     //接收服务端消息并打印
     MessageTransporter msg_trans(sock_);
     Message m;
-    while(true)
+    while(running_)
     {
         int res = msg_trans.recvMessage(m);
         if (res == -1)
@@ -131,4 +133,5 @@ void Client::run()
             m.print();
         }
     }   
+    close(sock_);
 }
