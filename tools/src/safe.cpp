@@ -1,7 +1,7 @@
 #include"../include/safe.h"
 #include<iostream>
 namespace Safe {
-int Copy(char*dst,std::size_t dst_size,const char*str)
+int copy(char*dst,std::size_t dst_size,const char*str)
 {
     if(str == nullptr || dst == nullptr)
         return -1;
@@ -10,7 +10,7 @@ int Copy(char*dst,std::size_t dst_size,const char*str)
     snprintf(dst,dst_size,"%s",str);
     return 0;
 }
-int Input(char*dst,std::size_t dst_size)
+int input(char*dst,std::size_t dst_size)
 {
     if(dst_size<=0)
         return -1;

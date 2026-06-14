@@ -1,36 +1,39 @@
-#include"../include/messageTransporter.h"
-#include<cstring>
+#include "../include/messageTransporter.h"
+#include <cstring>
 #include <sys/socket.h>
-messageTransporter::messageTransporter():m_sock(-1)
+
+MessageTransporter::MessageTransporter() : sock_(-1)
 {
     
 }
-messageTransporter::messageTransporter(int sock):m_sock(sock)
+
+MessageTransporter::MessageTransporter(int sock) : sock_(sock)
 {
 }
 
-messageTransporter::~messageTransporter()
+MessageTransporter::~MessageTransporter()
 {
 }
 
-void messageTransporter::set_sock(int sock)
+void MessageTransporter::setSock(int sock)
 {
-    m_sock = sock;
+    sock_ = sock;
 }
-int messageTransporter::SendMessage(const msg&message)
+
+int MessageTransporter::sendMessage(const Message& message)
 {
-    bzero(wbuf,kBufSize);
-    message.serialize(wbuf,kBufSize);
-    int res = send(m_sock,wbuf,kBufSize,0);
+    bzero(wbuf_, kBufSize);
+    message.serialize(wbuf_, kBufSize);
+    int res = send(sock_, wbuf_, kBufSize, 0);
     return res;
 }
 
-int messageTransporter::RecvMessage(msg&message)
+int MessageTransporter::recvMessage(Message& message)
 {
-    bzero(rbuf,kBufSize);
-    int res = recv(m_sock, rbuf, kBufSize, 0);
-    if(res == -1 || res == 0)
+    bzero(rbuf_, kBufSize);
+    int res = recv(sock_, rbuf_, kBufSize, 0);
+    if (res == -1 || res == 0)
         return res;
-    message.deserialize(rbuf);
+    message.deserialize(rbuf_);
     return res;
 }

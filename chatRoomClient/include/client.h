@@ -1,22 +1,24 @@
 #ifndef _CLIENT_H_
 #define _CLIENT_H_
-#include"../include/protocol.h"
+#include "../include/protocol.h"
+
 /*网络聊天室,客户端类
 功能:
     主线程:初始化客户端,发起连接请求,接收服务端消息
     分支线程:发送消息到服务端
 */
-enum class cliType{DEFAULT,LOGIN,LOGOUT};
+enum class CliType { DEFAULT, LOGIN, LOGOUT };
+
 class Client
 {
 private:
-    int sock;           //用于通信的套接字
-    const char* cli_ip; //客户端IP地址
-    int cli_port;       //客户端端口号
-    const char* ser_ip; //服务器IP地址
-    int ser_port;       //服务器端口号
-    cliType status;         //客户端状态
-    char name[msg::kUserNameSize];
+    int sock_;           //用于通信的套接字
+    const char* cli_ip_; //客户端IP地址
+    int cli_port_;       //客户端端口号
+    const char* ser_ip_; //服务器IP地址
+    int ser_port_;       //服务器端口号
+    CliType status_;         //客户端状态
+    char name_[Message::kUserNameSize];
 
     void login();
     void logout();

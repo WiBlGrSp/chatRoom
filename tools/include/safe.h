@@ -3,7 +3,7 @@
 #include <cstddef>
 namespace Safe
 {
-int Copy(char*dst,std::size_t dst_size,const char*src);
-int Input(char*dst,std::size_t dst_size);
+int copy(char*dst,std::size_t dst_size,const char*src);
+int input(char*dst,std::size_t dst_size);
 }
 #endif

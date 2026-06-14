@@ -1,11 +1,12 @@
-#include"server.h"
-#include"protocol.h"
-#include"log.h"
-#include"messageTransporter.h"
+#include "server.h"
+#include "protocol.h"
+#include "log.h"
+#include "messageTransporter.h"
 #include <cmath>
 #include <mutex>
 #include <netinet/in.h>
 #include <sys/socket.h>
+
 /*
     初始化服务器
     功能:
@@ -14,58 +15,62 @@
         启动服务器
     
 */
-Server::Server(const char* ip, int port, int numThreads):thread_pool(numThreads)
+Server::Server(const char* ip, int port, int numThreads) : thread_pool_(numThreads)
 {
-    run(ip,port);
+    run(ip, port);
 }
 
 Server::~Server()
 {
     
 }
-void Server::broadcast(msg& m,int exclude_sock)
+
+void Server::broadcast(Message& m, int exclude_sock)
 {
-    messageTransporter msg_trans;
-    for(const auto&user:user_list)
+    MessageTransporter msg_trans;
+    for(const auto& user : user_list_)
     {
-        if(user.sock!=exclude_sock)
+        if(user.sock_ != exclude_sock)
         {
-            msg_trans.set_sock(user.sock);
-            int res = msg_trans.SendMessage(m);
-            if(res==-1) log(LogLevel::ERROR,"broadcast error");
+            msg_trans.setSock(user.sock_);
+            int res = msg_trans.sendMessage(m);
+            if(res == -1) log(LogLevel::ERROR, "broadcast error");
         }
     }
     
 }
-int Server::add_user(struct sockaddr_in&addr_user,int sock,char user_id[])
+
+int Server::addUser(struct sockaddr_in& addr_user, int sock, char user_id[])
 {
     //检查是否有重复
-    for(const auto&user:user_list)
+    for(const auto& user : user_list_)
     {
-        if(strcmp(user_id,user.user_id)==0)
+        if(strcmp(user_id, user.user_id_) == 0)
             return -1;
     }
-    struct userInfo user_info;
-    user_info.addr = addr_user;
-    user_info.sock = sock;
-    strcpy(user_info.user_id,user_id);
+    struct UserInfo user_info;
+    user_info.addr_ = addr_user;
+    user_info.sock_ = sock;
+    strcpy(user_info.user_id_, user_id);
 
-    user_list.push_back(user_info);
+    user_list_.push_back(user_info);
     return 0;
 }
-void Server::del_user(int sock)
+
+void Server::delUser(int sock)
 {
-    auto it = user_list.begin();
-    for(;it!=user_list.end() && it->sock != sock;it++);
-    if(it !=user_list.end())
-        user_list.erase(it);
+    auto it = user_list_.begin();
+    for(; it != user_list_.end() && it->sock_ != sock; it++);
+    if(it != user_list_.end())
+        user_list_.erase(it);
 }
-const char* Server::get_name(int sock)
+
+const char* Server::getName(int sock)
 {
-    for(const auto&user:user_list)
+    for(const auto& user : user_list_)
     {
-        if(user.sock == sock)
-            return user.user_id;
+        if(user.sock_ == sock)
+            return user.user_id_;
     }
     return nullptr;
 }
@@ -79,70 +84,70 @@ const char* Server::get_name(int sock)
             CHAT -->广播消息
             EXIT -->将用户从用户管理器中删除
 */
-void Server::messageHandler(int sock,struct sockaddr_in addr_cli)
+void Server::messageHandler(int sock, struct sockaddr_in addr_cli)
 {
  
-    messageTransporter msg_trans(sock);
-    struct msg m;
+    MessageTransporter msg_trans(sock);
+    struct Message m;
     while(true)
     {
-        int res = msg_trans.RecvMessage(m);
+        int res = msg_trans.recvMessage(m);
         if(res == 0)
         {
             {
-                unique_lock<mutex>lock(mutex_user_list);
-                const char*name = get_name(sock);
-                log(LogLevel::INFO,"[%s:%d]:%s已经下线",
-                    inet_ntoa(addr_cli.sin_addr),ntohs(addr_cli.sin_port),name);
+                unique_lock<mutex> lock(mutex_user_list_);
+                const char* name = getName(sock);
+                log(LogLevel::INFO, "[%s:%d]:%s已经下线",
+                    inet_ntoa(addr_cli.sin_addr), ntohs(addr_cli.sin_port), name);
                 //向所有在线用户广播用户退出消息
-                m.set_type(msg_type::LOGOUT);
-                m.set_name(name);
-                m.set_content("logout");
+                m.setType(MsgType::LOGOUT);
+                m.setName(name);
+                m.setContent("logout");
                 broadcast(m);
-                del_user(sock);
+                delUser(sock);
             }
             break;
         }else if(res == -1)
         {
-            log(LogLevel::ERROR,"recv error");
+            log(LogLevel::ERROR, "recv error");
         }else{
             //分类处理
-            switch(m.type)
+            switch(m.type_)
             {
-                case msg_type::LOGIN:
+                case MsgType::LOGIN:
                     {
-                        unique_lock<mutex>lock(mutex_user_list);
+                        unique_lock<mutex> lock(mutex_user_list_);
             
                         //DEBUG:重复添加相同用户
                         //向用户列表添加该用户
-                        if(add_user(addr_cli,sock,m.name) == -1)
+                        if(addUser(addr_cli, sock, m.name_) == -1)
                         {
-                            m.set_content("login error:id重复");
-                            msg_trans.SendMessage(m);
+                            m.setContent("login error:id重复");
+                            msg_trans.sendMessage(m);
                             break;
                         }
                         //检查用户列表
-                        log(LogLevel::INFO,"user_list size:%zu",user_list.size());
+                        log(LogLevel::INFO, "user_list size:%zu", user_list_.size());
 
                         //向所有在线用户广播登录成功消息
-                        m.set_content("login");
+                        m.setContent("login");
                         broadcast(m);
                     }
                 break;
-                case msg_type::CHAT:
+                case MsgType::CHAT:
                     {
-                        unique_lock<mutex>lock(mutex_user_list);
+                        unique_lock<mutex> lock(mutex_user_list_);
                         //向除自己外的在线用户广播
-                        broadcast(m,sock);
+                        broadcast(m, sock);
                     }
                 break;
-                case msg_type::LOGOUT:
+                case MsgType::LOGOUT:
                     {
-                        unique_lock<mutex>lock(mutex_user_list);
+                        unique_lock<mutex> lock(mutex_user_list_);
                         //从用户列表删除该用户
-                        del_user(sock);
+                        delUser(sock);
                         //向所有在线用户广播用户退出消息
-                        m.set_content("logout");
+                        m.setContent("logout");
                         broadcast(m);
                     }
                 break;
@@ -161,55 +166,55 @@ void Server::messageHandler(int sock,struct sockaddr_in addr_cli)
         创建连接
         将通信任务分发给线程池
 */
-void Server::run(const char*ip,int port)
+void Server::run(const char* ip, int port)
 {
     //1.创建用于监听的socket
-    int sock_lis = socket(AF_INET,SOCK_STREAM,0);
+    int sock_lis = socket(AF_INET, SOCK_STREAM, 0);
 
     if(sock_lis == -1)
         log(LogLevel::ERROR, "create error");
     else
         log(LogLevel::INFO, "create success");
 
-     //1.1设置端口快速重用
+    //1.1设置端口快速重用
     int opt = 1;
     setsockopt(sock_lis, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt));
 
     //2.绑定本机ip和端口
     struct sockaddr_in addr_lis;
-    memset(&addr_lis,0,sizeof(addr_lis));
-    addr_lis.sin_family=AF_INET;
+    memset(&addr_lis, 0, sizeof(addr_lis));
+    addr_lis.sin_family = AF_INET;
     addr_lis.sin_port = htons(port);
     addr_lis.sin_addr.s_addr = inet_addr(ip);
 
-    if(bind(sock_lis,(struct sockaddr*)(&addr_lis),sizeof(addr_lis)) == -1)
+    if(bind(sock_lis, (struct sockaddr*)(&addr_lis), sizeof(addr_lis)) == -1)
     {
         log(LogLevel::ERROR, "bind error");
-    }else
+    } else
         log(LogLevel::INFO, "bind success");
 
     //3.设置监听状态
-    if(listen(sock_lis,BACKLOG) == -1)
+    if(listen(sock_lis, BACKLOG) == -1)
     {
         log(LogLevel::ERROR, "listen error");
-    }else
+    } else
         log(LogLevel::INFO, "listen success");
 
     while(true){
         //4.等待客户端连接
         struct sockaddr_in addr_cli;
         socklen_t addr_len = sizeof(addr_cli);
-        int sock_con = accept(sock_lis,(struct sockaddr*)&addr_cli,&addr_len);
+        int sock_con = accept(sock_lis, (struct sockaddr*)&addr_cli, &addr_len);
         if(sock_con < 0){
-            log(LogLevel::ERROR,"accept error");
+            log(LogLevel::ERROR, "accept error");
             continue;
-        }else
-            log(LogLevel::INFO,"accept success");
-        log(LogLevel::INFO,"[%s:%d]:连接成功",
-        inet_ntoa(addr_cli.sin_addr),ntohs(addr_cli.sin_port));
+        } else
+            log(LogLevel::INFO, "accept success");
+        log(LogLevel::INFO, "[%s:%d]:连接成功",
+            inet_ntoa(addr_cli.sin_addr), ntohs(addr_cli.sin_port));
         //将通信任务分发给线程池
-        thread_pool.addTask([this,sock_con,addr_cli]{
-            messageHandler(sock_con,addr_cli);
+        thread_pool_.addTask([this, sock_con, addr_cli]{
+            messageHandler(sock_con, addr_cli);
         });
     }
 }

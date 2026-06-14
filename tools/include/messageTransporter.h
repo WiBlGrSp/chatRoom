@@ -1,22 +1,22 @@
 #ifndef _MESSAGE_TRANSPORTER_H_
 #define _MESSAGE_TRANSPORTER_H_
-#include"../include/protocol.h"
+#include "../include/protocol.h"
 
-class messageTransporter
+class MessageTransporter
 {
 private:
-    int m_sock;   //用于通信的socket
-    static const int kBufSize = sizeof(msg);   //缓冲区大小
-    char rbuf[kBufSize];    //读缓冲区
-    char wbuf[kBufSize];    //写缓冲区
+    int sock_;   //用于通信的socket
+    static const int kBufSize = sizeof(Message);   //缓冲区大小
+    char rbuf_[kBufSize];    //读缓冲区
+    char wbuf_[kBufSize];    //写缓冲区
 
 public:
-    messageTransporter();
-    messageTransporter(int sock);
-    ~messageTransporter();
-    void set_sock(int sock);
-    int SendMessage(const msg&message);
-    int RecvMessage(msg&message);
+    MessageTransporter();
+    MessageTransporter(int sock);
+    ~MessageTransporter();
+    void setSock(int sock);
+    int sendMessage(const Message& message);
+    int recvMessage(Message& message);
 };
 
 #endif
