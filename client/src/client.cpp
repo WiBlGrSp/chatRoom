@@ -2,6 +2,7 @@
 #include "common/log.h"
 #include "common/messageTransporter.h"
 #include "common/protocol.h" 
+#include <cstdlib>
 #include <sys/socket.h>
 #include <cstdio>
 #include <cstring>
@@ -14,70 +15,171 @@
 #include "common/safe.h"
 
 Client::Client(const char* ip, int port, const char* server_ip, int server_port)
-    : cli_ip_(ip), cli_port_(port), ser_ip_(server_ip), ser_port_(server_port), status_(CliType::DEFAULT),running_(true)
+    : cli_ip_(ip), cli_port_(port), ser_ip_(server_ip), ser_port_(server_port),
+     status_(CliType::DEFAULT),msg_trans_(-1,true),running_(true)
 {
     run();
 }
 
 Client::~Client()
 {
+    shutdown(sock_,SHUT_RDWR);
 }
 
-void Client::login()
+//用于和用户交互
+void Client::menu()
 {
-    //读取用户名
-    printf("请输入用户名以登录:");
-    fflush(stdout);
-    Safe::input(this->name_, sizeof(this->name_));
-
-    if (MessageTransporter(sock_).sendMessage(Message(MsgType::LOGIN, this->name_)) == -1)
-    {
-        log(LogLevel::ERROR, "login error");
-    }
-    status_ = CliType::LOGIN;
-}
-
-void Client::logout()
-{
-    if (MessageTransporter(sock_).sendMessage(Message(MsgType::LOGOUT, this->name_)) == -1)
-    {
-        log(LogLevel::ERROR, "logout error");
-    }
-    status_ = CliType::LOGOUT;
-}
-
-
-//用于发送消息
-void Client::messageHandler()
-{
-    char buf[Message::kContentSize];
-    MessageTransporter msg_trans(this->sock_);
-    //自动登录
-    login();
-    while(true)
-    {
-        //读取终端输入
-        Safe::input(buf, sizeof(buf));
-        //根据输入类型,分类处理
-        if (strcasecmp(buf, "login") == 0)
-        {
-            if (status_ == CliType::DEFAULT || status_ == CliType::LOGOUT)
-                login();
-        } else if (strcasecmp(buf, "logout") == 0)
-        {
-            if (status_ == CliType::LOGIN)
-                logout();
-        } else if (strcasecmp(buf, "exit") == 0)
-        {
-            if (status_ == CliType::LOGIN)
-                logout();
-            running_ = false;
-            shutdown(sock_,SHUT_RDWR);  //关闭套接字的收发功能
-        } else if (status_ == CliType::LOGIN)
-        {
-            msg_trans.sendMessage(Message(MsgType::CHAT, this->name_, buf));
+    while(running_){
+        switch (status_) {
+            case CliType::DEFAULT:
+                loginMenu();
+                break;
+            case CliType::LOGIN:
+                chatMenu();
+                break;
         }
     }
+    log(LogLevel::INFO,"离开主菜单");
+}
+
+void Client::loginMenu()
+{
+    log(LogLevel::INFO,"进入登录页面");
+    while(status_!=CliType::LOGIN)
+    {
+        //输出提示信息
+        printf("请输入用户名以登录:");
+        fflush(stdout);
+
+        //读取用户输入
+        Safe::input(this->name_, sizeof(this->name_));
+        
+        //执行登录业务
+        Message msg(MsgType::LOGIN,this->name_);
+        int res = loginHandler(msg);
+        if(res == 0)
+        {
+            log(LogLevel::INFO,"登录成功,进入聊天室");
+        }else if(res == -1)
+        {
+            log(LogLevel::WARN,"登录失败,用户名重复");
+        }
+    }
+    log(LogLevel::INFO,"离开登录页面");
+}
+
+void Client::chatMenu()
+{
+    log(LogLevel::INFO,"进入聊天页面");
+    //接收消息
+    std::thread th_recv([this]{
+        chatRecvHandler();
+    });
+    th_recv.detach();
+
+    char buf[Message::kContentSize];
+    while(status_==CliType::LOGIN)
+    {
+        printf("请输入聊天信息:");fflush(stdout);
+        Safe::input(buf, sizeof(buf));
+        if(strcmp(buf,"/logout") == 0)
+        {
+            int res = logoutHandler();
+            if(res == -1)
+            {
+                log(LogLevel::WARN,"登出失败...");
+            }else if (res == 0) {
+                log(LogLevel::INFO,"登出成功...");
+            }
+        }else if (strcmp(buf, "/exit") == 0)
+        {
+            int res = exitHandler();
+            if(res == -1)
+            {
+                log(LogLevel::WARN,"登出失败...");
+            }else if (res == 0) {
+                status_ = CliType::DEFAULT;
+                log(LogLevel::INFO,"退出成功...");
+            }
+        }else {
+            msg_trans_.sendMessage(Message(MsgType::CHAT,name_,buf));
+        }
+    }
+    log(LogLevel::INFO,"离开聊天页面");
+}
+
+/*
+功能:执行登录业务
+
+向服务器发送登录请求
+接收服务器响应报文
+解析响应报文
+返回登录是否成功
+*/
+int Client::loginHandler(Message&msg)
+{
+    msg_trans_.sendMessage(msg);
+    Message response;
+    msg_trans_.recvMessage(response,
+        {MsgType::LOGIN_OK,MsgType::LOGIN_FAIL});
+    if(response.type_==MsgType::LOGIN_OK)
+    {
+        status_ = CliType::LOGIN;
+        return 0;
+    }else if(response.type_ == MsgType::LOGIN_FAIL)
+    {
+        return -1;
+    }
+    return -2;
+}
+
+int Client::logoutHandler()
+{
+    //发送请求报文
+    msg_trans_.sendMessage(Message(MsgType::LOGOUT,name_));
+    
+    //接收响应报文
+    Message response;
+    msg_trans_.recvMessage(response,{MsgType::LOGOUT_OK,MsgType::LOGOUT_FAIL});
+    
+    
+    if(response.type_==MsgType::LOGOUT_OK)
+    {
+        //登出成功
+        status_=CliType::DEFAULT;
+        msg_trans_.pushMessage(Message(MsgType::QUIT));
+        return 0;
+    }else if(response.type_ == MsgType::LOGOUT_FAIL)
+    {
+        //登出失败
+        return -1;
+    }
+    return -2;
+}
+
+void Client::chatRecvHandler()
+{
+    //接收服务端提示信息并打印
+    Message m;
+    while(status_==CliType::LOGIN)
+    {
+        int res = msg_trans_.recvMessage(m,{MsgType::CHAT,MsgType::INFO,MsgType::QUIT});
+        if(res >0)
+        {
+            m.print();
+        }
+    }
+    log(LogLevel::INFO,"chatRecvHandler end");
+}
+
+int Client::exitHandler()
+{
+    int res1 = logoutHandler();
+    if(res1 == -1)
+        return -1;
+    status_ = CliType::DEFAULT;
+    running_ = false;
+    return 0;
 }
 
 void Client::run()
@@ -108,30 +210,13 @@ void Client::run()
     }
     else
         log(LogLevel::INFO, "connect success");
-
-    //创建分支线程用于发送消息
+    msg_trans_.setSock(sock_);
+    //创建分支线程用于接收消息,并分发
     std::thread th([this]{
-        messageHandler();
+        msg_trans_.collectMessage();
     });
     th.detach();
-
-    //接收服务端消息并打印
-    MessageTransporter msg_trans(sock_);
-    Message m;
-    while(running_)
-    {
-        int res = msg_trans.recvMessage(m);
-        if (res == -1)
-            log(LogLevel::ERROR, "recv error");
-        else if (res == 0)
-        {
-            log(LogLevel::INFO, "服务器已下线");
-            break;
-        }
-        else
-        {
-            m.print();
-        }
-    }   
+    //进入主菜单
+    menu();
     close(sock_);
 }

@@ -1,5 +1,6 @@
 #ifndef _CLIENT_H_
 #define _CLIENT_H_
+#include "common/messageTransporter.h"
 #include "common/protocol.h"
 #include <atomic>
 
@@ -8,25 +9,31 @@
     主线程:初始化客户端,发起连接请求,接收服务端消息
     分支线程:发送消息到服务端
 */
-enum class CliType { DEFAULT, LOGIN, LOGOUT };
+enum class CliType { DEFAULT,LOGIN };
 
 class Client
 {
 private:
     int sock_;           //用于通信的套接字
     const char* cli_ip_; //客户端IP地址
-    int cli_port_;       //客户端端口号
+    int cli_port_;       //客户端端口号s
     const char* ser_ip_; //服务器IP地址
     int ser_port_;       //服务器端口号
     CliType status_;         //客户端状态
     char name_[Message::kUserNameSize];
+    MessageTransporter msg_trans_;   //用于接收消息,发送消息,分发消息的实体
 
     std::atomic<bool> running_;
+    void menu();
+    void loginMenu();
+    void chatMenu();
 
-    void login();
-    void logout();
+    int loginHandler(Message&msg);
+    int logoutHandler();
+    void chatRecvHandler();
+    int exitHandler();
 
-    void messageHandler();  
+
     void run();
 public:
     Client(const char* ip, int port, const char* server_ip, int server_port);

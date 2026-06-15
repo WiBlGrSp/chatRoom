@@ -28,7 +28,7 @@ ThreadPool::~ThreadPool()
 void ThreadPool::addTask(function<void()> task)
 {
     {
-        unique_lock<mutex> lock(task_mutex_); // 获取锁资源，保护条件变量
+        unique_lock<mutex> lock(task_mutex_); // 获取锁资源，保护任务队列
         tasks_.push(task);                    // 将任务添加到任务队列
     }
 
@@ -40,7 +40,7 @@ void ThreadPool::addTask(function<void()> task)
 void ThreadPool::startThreadPool(size_t num_threads)
 {
     // 循环创建num_threads个线程
-    for (int i = 0; i < num_threads; i++)
+    for (size_t i = 0; i < num_threads; i++)
     {
         // 创建一个线程，并且将线程放入到线程容器中
         workers_.emplace_back([this] // 使用lambda表达式定义线程体

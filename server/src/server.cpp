@@ -3,6 +3,7 @@
 #include "common/log.h"
 #include "common/messageTransporter.h"
 #include <cmath>
+#include <cstdio>
 #include <mutex>
 #include <netinet/in.h>
 #include <sys/socket.h>
@@ -34,7 +35,10 @@ void Server::broadcast(Message& m, int exclude_sock)
         {
             msg_trans.setSock(user.sock_);
             int res = msg_trans.sendMessage(m);
-            if(res == -1) log(LogLevel::ERROR, "broadcast error");
+            if(res == -1) 
+                log(LogLevel::ERROR, "broadcast error");
+            else    
+                log(LogLevel::INFO,"broadcast ok");
         }
     }
     
@@ -57,12 +61,15 @@ int Server::addUser(struct sockaddr_in& addr_user, int sock, char user_id[])
     return 0;
 }
 
-void Server::delUser(int sock)
+int Server::delUser(int sock)
 {
     auto it = user_list_.begin();
     for(; it != user_list_.end() && it->sock_ != sock; it++);
-    if(it != user_list_.end())
+    if(it != user_list_.end()){
         user_list_.erase(it);
+        return 0;
+    }
+    return -1;
 }
 
 const char* Server::getName(int sock)
@@ -73,6 +80,52 @@ const char* Server::getName(int sock)
             return user.user_id_;
     }
     return nullptr;
+}
+
+void Server::loginHandler(int sock, struct sockaddr_in addr_cli,Message&msg)
+{
+    
+    unique_lock<mutex> lock(mutex_user_list_);
+    MessageTransporter msg_trans(sock);
+    //DEBUG:重复添加相同用户
+    //向用户列表添加该用户
+    if(addUser(addr_cli, sock, msg.name_) == -1)
+    {
+        msg_trans.sendMessage(Message(MsgType::LOGIN_FAIL));
+        return;
+    }
+    //检查用户列表
+    log(LogLevel::INFO, "user_list size:%zu", user_list_.size());
+    for(const auto&user:user_list_)
+    {
+        printf("%s ",user.user_id_);
+    }
+    printf("\n");
+
+    msg.setType(MsgType::LOGIN_OK);
+    msg.setContent("login");
+    msg_trans.sendMessage(msg);
+    //向所有在线用户广播登录成功消息
+    msg.setType(MsgType::INFO);
+    broadcast(msg,sock);
+}
+
+void Server::logoutHandler(int sock,Message&msg)
+{
+    unique_lock<mutex> lock(mutex_user_list_);
+    //从用户列表删除该用户
+    int res = delUser(sock);
+    if(res == -1)
+    {
+        msg.setType(MsgType::LOGOUT_FAIL);
+        MessageTransporter(sock).sendMessage(msg);
+    }else if(res == 0){
+        msg.setType(MsgType::LOGOUT_OK);
+        MessageTransporter(sock).sendMessage(msg);
+        //向所有在线用户广播用户退出消息
+        msg.setContent("logout");
+        broadcast(msg);
+    }
 }
 /*
     用户消息处理
@@ -88,10 +141,11 @@ void Server::messageHandler(int sock, struct sockaddr_in addr_cli)
 {
  
     MessageTransporter msg_trans(sock);
-    struct Message m;
+    Message msg;
     while(true)
     {
-        int res = msg_trans.recvMessage(m);
+        int res = msg_trans.recvMessage(msg);
+
         if(res == 0)
         {
             {
@@ -100,10 +154,10 @@ void Server::messageHandler(int sock, struct sockaddr_in addr_cli)
                 log(LogLevel::INFO, "[%s:%d]:%s已经下线",
                     inet_ntoa(addr_cli.sin_addr), ntohs(addr_cli.sin_port), name);
                 //向所有在线用户广播用户退出消息
-                m.setType(MsgType::LOGOUT);
-                m.setName(name);
-                m.setContent("logout");
-                broadcast(m);
+                msg.setType(MsgType::LOGOUT);
+                msg.setName(name);
+                msg.setContent("logout");
+                broadcast(msg);
                 delUser(sock);
             }
             break;
@@ -112,44 +166,20 @@ void Server::messageHandler(int sock, struct sockaddr_in addr_cli)
             log(LogLevel::ERROR, "recv error");
         }else{
             //分类处理
-            switch(m.type_)
+            switch(msg.type_)
             {
                 case MsgType::LOGIN:
-                    {
-                        unique_lock<mutex> lock(mutex_user_list_);
-            
-                        //DEBUG:重复添加相同用户
-                        //向用户列表添加该用户
-                        if(addUser(addr_cli, sock, m.name_) == -1)
-                        {
-                            m.setContent("login error:id重复");
-                            msg_trans.sendMessage(m);
-                            break;
-                        }
-                        //检查用户列表
-                        log(LogLevel::INFO, "user_list size:%zu", user_list_.size());
-
-                        //向所有在线用户广播登录成功消息
-                        m.setContent("login");
-                        broadcast(m);
-                    }
+                    loginHandler(sock,addr_cli,msg);
                 break;
                 case MsgType::CHAT:
                     {
                         unique_lock<mutex> lock(mutex_user_list_);
                         //向除自己外的在线用户广播
-                        broadcast(m, sock);
+                        broadcast(msg, sock);
                     }
                 break;
                 case MsgType::LOGOUT:
-                    {
-                        unique_lock<mutex> lock(mutex_user_list_);
-                        //从用户列表删除该用户
-                        delUser(sock);
-                        //向所有在线用户广播用户退出消息
-                        m.setContent("logout");
-                        broadcast(m);
-                    }
+                    logoutHandler(sock,msg);
                 break;
                 default:
                 break;

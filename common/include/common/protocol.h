@@ -1,12 +1,21 @@
 #ifndef _PROTOCOL_H_
 #define _PROTOCOL_H_
 #include <cstdint>
+#include<string>
 enum class MsgType : uint32_t {
     LOGIN = 0,
     CHAT = 1,
-    LOGOUT = 2
+    LOGOUT = 2,
+    LOGIN_OK = 100,
+    LOGIN_FAIL = 101,
+    CHAT_OK = 200,
+    CHAT_FAIL = 201,
+    LOGOUT_OK = 300,
+    LOGOUT_FAIL = 301,
+    INFO = 400,
+    QUIT = 3
 };
-const char kTypeString[3][32] = {"LOGIN", "CHAT", "LOGOUT"};
+// const char kTypeString[3][32] = {"LOGIN", "CHAT", "LOGOUT"};
 struct Message {
     static constexpr std::size_t kTypeSize = 4;
     static constexpr std::size_t kUserNameSize = 8;
@@ -18,9 +27,10 @@ struct Message {
     void setType(MsgType type);
     void setName(const char name[]);
     void setContent(const char content[]);
-    void serialize(char* str, int size) const;    //将消息序列化为二进制串
+    void serialize(char* str,size_t size) const;    //将消息序列化为二进制串
     void deserialize(char* str);                //将二进制串反序列化为消息
-    void print();   //向终端打印消息
+    void print() const;   //向终端打印消息
+    std::string str()const;   //将协议信息转化为字符串
 };
 static constexpr std::size_t kMsgLength = sizeof(Message);
 #endif  //!_PROTOCOL_H_

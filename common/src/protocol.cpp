@@ -6,7 +6,21 @@
 #include <netinet/in.h>
 #include <cstdio>
 #include "common/safe.h"
-
+#include <sstream>
+#include<unordered_map>
+static const std::unordered_map<MsgType,std::string> kTypeString{
+    {MsgType::LOGIN,"LOGIN"},
+    {MsgType::CHAT,"CHAT"},
+    {MsgType::LOGOUT,"LOGOUT"},
+    {MsgType::LOGIN_OK,"LOGIN_OK"},
+    {MsgType::LOGIN_FAIL,"LOGIN_FAIL"},
+    {MsgType::CHAT_OK,"CHAT_OK"},
+    {MsgType::CHAT_FAIL,"CHAT_FAIL"},
+    {MsgType::LOGOUT_OK,"LOGOUT_OK"},
+    {MsgType::LOGOUT_FAIL,"LOGOUT_FAIL"},
+    {MsgType::INFO,"INFO"},
+    {MsgType::QUIT,"QUIT"}
+};
 Message::Message(MsgType type, char* name, char* content) : type_(type)
 {
     setName(name);
@@ -40,7 +54,7 @@ void Message::setContent(const char content[])
     Safe::copy(this->content_, kContentSize, content);
 }
 
-void Message::serialize(char* str, int size) const {    //将消息序列化为二进制串
+void Message::serialize(char* str, size_t size) const {    //将消息序列化为二进制串
     if (size < kMsgLength)
     {
         log(LogLevel::WARN, "serialize: buf not enough");
@@ -70,7 +84,21 @@ void Message::deserialize(char* str) {    //将字符串反序列化为消息
 }
 
 //向终端打印消息
-void Message::print()
+void Message::print() const
 {
-    printf("[%s] [%s]:%s\n", kTypeString[(uint32_t)type_], name_, content_);
+    printf("(%s):%s\n",name_, content_);
+}
+//将协议信息转化为字符串
+std::string Message::str() const
+{
+    std::ostringstream oss;
+
+    oss << "["
+        << kTypeString.at(type_)
+        << "] "
+        << "[" << name_
+        << "] "
+        << content_;
+
+    return oss.str();
 }
