@@ -33,8 +33,8 @@ private:
     int logoutHandler();
     void chatRecvHandler();
     int exitHandler();
-
-
+    //读取用户输入,并截取为指定长度,避免溢出
+    int input(char*dst,std::size_t dst_size);   
     void run();
 public:
     Client(const char* ip, int port, const char* server_ip, int server_port);

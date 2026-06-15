@@ -5,7 +5,6 @@
 #include <arpa/inet.h>
 #include <netinet/in.h>
 #include <cstdio>
-#include "common/safe.h"
 #include <sstream>
 #include<unordered_map>
 static const std::unordered_map<MsgType,std::string> kTypeString{
@@ -42,7 +41,7 @@ void Message::setName(const char name[])
     }
     if (strlen(name) >= kUserNameSize)
         log(LogLevel::WARN, "user_name_length overflow");
-    Safe::copy(this->name_, Message::kUserNameSize, name);
+    snprintf(name_,kUserNameSize,"%s",name);
 }
 
 void Message::setContent(const char content[])
@@ -53,7 +52,7 @@ void Message::setContent(const char content[])
     }
     if (strlen(content) >= kContentSize)
         log(LogLevel::WARN, "content_length overflow");
-    Safe::copy(this->content_, kContentSize, content);
+    snprintf(content_,kContentSize,"%s",content);
 }
 
 void Message::serialize(char* str, size_t size) const {    //将消息序列化为二进制串

@@ -12,7 +12,7 @@
 #include <arpa/inet.h>
 #include <thread>
 #include <unistd.h>
-#include "common/safe.h"
+#include<iostream>
 
 Client::Client(const char* ip, int port, const char* server_ip, int server_port)
     : cli_ip_(ip), cli_port_(port), ser_ip_(server_ip), ser_port_(server_port),
@@ -52,7 +52,7 @@ void Client::loginMenu()
         printf("%s",tip_.c_str());fflush(stdout);
 
         //读取用户输入
-        Safe::input(this->name_, sizeof(this->name_));
+        input(this->name_, sizeof(this->name_));
         
         //执行登录业务
         Message msg(MsgType::LOGIN,this->name_);
@@ -83,7 +83,7 @@ void Client::chatMenu()
     {
 
         printf("%s",tip_.c_str());fflush(stdout);
-        Safe::input(buf, sizeof(buf));
+        input(buf, sizeof(buf));
         if(strcmp(buf,"/logout") == 0)
         {
             int res = logoutHandler();
@@ -191,6 +191,24 @@ int Client::exitHandler()
         return 0;
     }
     return -1;
+}
+
+int Client::input(char*dst,std::size_t dst_size)
+{
+    if(dst_size<=0)
+        return -1;
+    std::string line;
+    std::getline(std::cin, line);
+    int flag = 0;
+    if(line.size()>=dst_size)
+        flag = -1;
+    snprintf(
+        dst,
+        dst_size,
+        "%s",
+        line.c_str()
+    );
+    return flag;
 }
 
 void Client::run()
