@@ -2,6 +2,7 @@
 #define _SERVER_H_
 
 //在线多人网络聊天室-服务器端
+#include "common/messageTransporter.h"
 #include "common/threadPool.h"
 #include "common/protocol.h"
 #include <cstdio>
@@ -39,6 +40,7 @@ private:
     void broadcast(Message& m, int exclude_sock = -1);   
     void loginHandler(int sock, struct sockaddr_in addr_cli,Message&msg);
     void logoutHandler(int sock,Message&msg);
+    int exitHangdler(MessageTransporter&msg_trans);
 /*
     用户消息处理
     功能:

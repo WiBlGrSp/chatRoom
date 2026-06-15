@@ -19,7 +19,9 @@ static const std::unordered_map<MsgType,std::string> kTypeString{
     {MsgType::LOGOUT_OK,"LOGOUT_OK"},
     {MsgType::LOGOUT_FAIL,"LOGOUT_FAIL"},
     {MsgType::INFO,"INFO"},
-    {MsgType::QUIT,"QUIT"}
+    {MsgType::QUIT,"QUIT"},
+    {MsgType::EXIT,"EXIT"},
+    {MsgType::EXIT_OK,"EXIT_OK"}
 };
 Message::Message(MsgType type, char* name, char* content) : type_(type)
 {

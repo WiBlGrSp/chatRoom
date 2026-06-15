@@ -3,17 +3,24 @@
 #include <cstdint>
 #include<string>
 enum class MsgType : uint32_t {
-    LOGIN = 0,
-    CHAT = 1,
-    LOGOUT = 2,
+    LOGIN = 1,
+    CHAT = 2,
+    LOGOUT = 3,
+
     LOGIN_OK = 100,
     LOGIN_FAIL = 101,
+
     CHAT_OK = 200,
     CHAT_FAIL = 201,
+
     LOGOUT_OK = 300,
     LOGOUT_FAIL = 301,
-    INFO = 400,
-    QUIT = 3
+
+    EXIT = 4,
+    EXIT_OK = 400,
+
+    INFO = 500,
+    QUIT = 999
 };
 // const char kTypeString[3][32] = {"LOGIN", "CHAT", "LOGOUT"};
 struct Message {

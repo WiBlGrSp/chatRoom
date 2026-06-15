@@ -127,6 +127,12 @@ void Server::logoutHandler(int sock,Message&msg)
         broadcast(msg);
     }
 }
+int Server::exitHangdler(MessageTransporter&msg_trans)
+{
+    //向用户发送响应
+    msg_trans.sendMessage(Message(MsgType::EXIT_OK));
+    return 0;
+}
 /*
     用户消息处理
     功能:
@@ -142,10 +148,10 @@ void Server::messageHandler(int sock, struct sockaddr_in addr_cli)
  
     MessageTransporter msg_trans(sock);
     Message msg;
-    while(true)
+    bool running = true;
+    while(running)
     {
         int res = msg_trans.recvMessage(msg);
-
         if(res == 0)
         {
             {
@@ -180,6 +186,10 @@ void Server::messageHandler(int sock, struct sockaddr_in addr_cli)
                 break;
                 case MsgType::LOGOUT:
                     logoutHandler(sock,msg);
+                    break;
+                case MsgType::EXIT:
+                    if(exitHangdler(msg_trans)==0)
+                        running = false;
                 break;
                 default:
                 break;

@@ -21,6 +21,7 @@ private:
     int ser_port_;       //服务器端口号
     CliType status_;         //客户端状态
     char name_[Message::kUserNameSize];
+    std::string tip_;    //提示信息
     MessageTransporter msg_trans_;   //用于接收消息,发送消息,分发消息的实体
 
     std::atomic<bool> running_;

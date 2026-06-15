@@ -45,11 +45,11 @@ void Client::menu()
 void Client::loginMenu()
 {
     log(LogLevel::INFO,"进入登录页面");
+    tip_="请输入用户名以登录:";
     while(status_!=CliType::LOGIN)
     {
         //输出提示信息
-        printf("请输入用户名以登录:");
-        fflush(stdout);
+        printf("%s",tip_.c_str());fflush(stdout);
 
         //读取用户输入
         Safe::input(this->name_, sizeof(this->name_));
@@ -70,6 +70,7 @@ void Client::loginMenu()
 
 void Client::chatMenu()
 {
+    tip_ = "请输入聊天信息:";
     log(LogLevel::INFO,"进入聊天页面");
     //接收消息
     std::thread th_recv([this]{
@@ -80,7 +81,8 @@ void Client::chatMenu()
     char buf[Message::kContentSize];
     while(status_==CliType::LOGIN)
     {
-        printf("请输入聊天信息:");fflush(stdout);
+
+        printf("%s",tip_.c_str());fflush(stdout);
         Safe::input(buf, sizeof(buf));
         if(strcmp(buf,"/logout") == 0)
         {
@@ -98,7 +100,6 @@ void Client::chatMenu()
             {
                 log(LogLevel::WARN,"登出失败...");
             }else if (res == 0) {
-                status_ = CliType::DEFAULT;
                 log(LogLevel::INFO,"退出成功...");
             }
         }else {
@@ -167,6 +168,10 @@ void Client::chatRecvHandler()
         if(res >0)
         {
             m.print();
+            if(m.type_ == MsgType::CHAT)
+            {
+                printf("%s",tip_.c_str());fflush(stdout);
+            }
         }
     }
     log(LogLevel::INFO,"chatRecvHandler end");
@@ -177,9 +182,15 @@ int Client::exitHandler()
     int res1 = logoutHandler();
     if(res1 == -1)
         return -1;
-    status_ = CliType::DEFAULT;
-    running_ = false;
-    return 0;
+    msg_trans_.sendMessage(Message(MsgType::EXIT));
+    Message msg;
+    msg_trans_.recvMessage(msg,{MsgType::EXIT_OK});
+    if(msg.type_ == MsgType::EXIT_OK){
+        status_ = CliType::DEFAULT;
+        running_ = false;
+        return 0;
+    }
+    return -1;
 }
 
 void Client::run()
